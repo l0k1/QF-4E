@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<!-- This part should be the same for any 3D panel.  Customize the actions section -->
+<PropertyList>
+
+ <name>F4E Panel Hotspots</name>
+ <background>Aircraft/QF-4E/Models/transparent.rgb</background>
+ <w>1024</w>
+ <h>768</h>
+ <y-offset>0</y-offset>
+
+ <instruments>
+  <instrument>
+   <name>Hot Spot Map</name>
+   <x>512</x>
+   <y>384</y>
+   <w>1024</w>
+   <h>768</h>
+   <w-base>1024</w-base>
+   <h-base>1024</h-base>
+
+
+ <layers>
+  <layer>
+   <name>background</name>
+   <texture>
+     <path>Aircraft/QF-4E/Models/transparent.rgb</path>
+<!--
+
+     <path>Aircraft/QF-4E/Models/hotspotgrid.rgb</path>
+-->
+
+     <x1>0.0</x1>
+     <y1>0.0</y1>
+     <x2>1.0</x2>
+     <y2>1.0</y2>
+   </texture>
+  </layer>
+ </layers>
+
+<!-- define hotspot actions below -->
+
+ <actions>
+
+
+  <!--  HSI Course Bug -->
+<!--
+  <action>
+   <name>Course Bug Decrease</name>
+   <button>0</button>
+   <x>-74</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>30</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/nav/radials/selected-deg[0]</property>
+    <step>-1</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+  <action>
+   <name>Course Bug Large Decrease</name>
+   <button>1</button>
+   <x>-74</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>30</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/nav/radials/selected-deg[0]</property>
+    <step>-10</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+
+
+  <action>
+   <name>Course Bug Increase</name>
+   <button>0</button>
+   <x>-54</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>30</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/nav/radials/selected-deg[0]</property>
+    <step>1</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+  <action>
+   <name>Course Bug Large Increase</name>
+   <button>1</button>
+   <x>-54</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>30</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/nav/radials/selected-deg[0]</property>
+    <step>10</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+-->
+  <!--  HSI Heading Bug -->
+<!--
+  <action>
+   <name>Heading Bug Decrease</name>
+   <button>0</button>
+   <x> 54</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>30</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/autopilot/settings/heading-bug-deg</property>
+    <step>1</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+  <action>
+   <name>Heading Bug Large Decrease</name>
+   <button>1</button>
+   <x> 54</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>30</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/autopilot/settings/heading-bug-deg</property>
+    <step>10</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+
+  <action>
+   <name>Heading Bug Increase</name>
+   <button>0</button>
+   <x> 32</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>30</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/autopilot/settings/heading-bug-deg</property>
+    <step>-1</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+  <action>
+   <name>Heading Bug Large Increase</name>
+   <button>1</button>
+   <x> 32</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>30</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/autopilot/settings/heading-bug-deg</property>
+    <step>-10</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+-->
+  <action>
+   <name>Bearing Switch Decrease</name>
+   <button>0</button>
+   <x> 70</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>60</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/navcomputer/brg-switch-position</property>
+    <step>-1</step>
+    <min>1</min>
+    <max>4</max>
+    <wrap>0</wrap>
+   </binding>
+  </action>
+
+  <action>
+   <name>Bearing Switch Increase</name>
+   <button>0</button>
+   <x> 91</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>60</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/navcomputer/brg-switch-position</property>
+    <step>1</step>
+    <min>1</min>
+    <max>4</max>
+    <wrap>0</wrap>
+   </binding>
+  </action>
+
+  <action>
+   <name>Mode Switch Decrease</name>
+   <button>0</button>
+   <x>112</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>60</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/navcomputer/mode-switch-position</property>
+    <step>-1</step>
+    <min>1</min>
+    <max>4</max>
+    <wrap>0</wrap>
+   </binding>
+  </action>
+
+  <action>
+   <name>Mode Switch Increase</name>
+   <button>0</button>
+   <x>133</x>
+   <y>-240</y>
+   <w>20</w>
+   <h>60</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/navcomputer/mode-switch-position</property>
+    <step>1</step>
+    <min>1</min>
+    <max>4</max>
+    <wrap>0</wrap>
+   </binding>
+  </action>
+
+  <!--  Armament -->
+
+  <action>
+   <name>emergency jettison button</name>
+   <button>0</button>
+   <x>-134</x>
+   <y>-240</y>
+   <w>32</w>
+   <h>40</h>
+   <binding>
+    <command>property-assign</command>
+    <property>controls/armament/station[0]/jettison-all</property>
+    <value>true</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>controls/armament/station[1]/jettison-all</property>
+    <value>true</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>controls/armament/station[2]/jettison-all</property>
+    <value>true</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>controls/armament/station[3]/jettison-all</property>
+    <value>true</value>
+   </binding>
+   <binding>
+    <command>property-assign</command>
+    <property>controls/armament/station[4]/jettison-all</property>
+    <value>true</value>
+   </binding>
+  </action>
+
+ </actions>
+
+  </instrument>
+ </instruments>
+</PropertyList>
+
+
+

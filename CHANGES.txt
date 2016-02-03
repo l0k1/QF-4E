@@ -1,0 +1,92 @@
+Change Log and ToDo List
+version 0.6.0 INW
+-- Changing 3D instruments to new OSG clickable versions
+
+version 0.5.5
+-- Tweaked FDM: limited elevator to -30 down, now full stick forward does not cause departure
+-- Installed lower left panel with flaps, slats, and gear indicator
+
+version 0.5.4
+-- Minor changes to NASAL scripts
+-- Reversed Heading bug hotspots.
+
+version 0.5.3
+-- Working on the 3D radar display.  Cockpit view not as pretty for now.
+-- Changed ASI textures
+-- Main panel texture not transparent anymore so hotspots show up better.
+
+version 0.5.2
+-- Fixed 3D model's centers so it rotates correctly in external views.
+-- Changes to the FDM
+-- Added EGT gauges
+-- Started on the 3D radar display.  Cockpit view not as pretty for now.
+
+version 0.5.1
+-- Adjusted the FDM
+-- Dragchute functions under ctrl-d.  It's a straight toggle at the moment so you can use it more than once per sortie...
+-- Added some panel hot spots.  Instrument lights are controlled by clicking near the knob on upper left under TAS gauge.
+-- Started programming the navigation computer.  Hotspots to adjust bearing/distance and mode.  See aircraft help.
+-- Added hotspots for HSI course and heading knobs.
+-- Added bearing and heading bugs to HSI.
+
+version 0.5
+-- Replaced Airspeed Indicator
+-- Moved pilot view 0.05 meters forward
+
+version 0.4
+-- Converted to JSBSim 2.0 (Broke dragchute)
+-- Good start on the 3D cockpit (almost done)
+
+version 0.3
+-- Adjusted wing tank positions
+-- Replaced 2D panel AOA, added indexers.
+-- Added some 3D instruments.
+-- There is now a drag chute, but it must be activated from the property tree
+-- Played around with the FDM
+
+version 0.2
+-- Increased fuel capacity to 1885 gallons internal and 1340 external
+-- Adjusted fuel quantity gauges to lbs x 10,000 instead of lbs x 1000.
+-- Shifted cockpit view forward 10 cm.
+-- Added tail hook
+-- Added several key commands see aircraft help
+-- Redid Nose wheel
+-- Fix intakes
+-- Changed 2D Panel Altimeter
+-- Changed 2D Panel G-Meter
+-- Added 2D panel speed brake indicator
+-- Started texture mapping
+
+version 0.1
+-- Initial Release
+
+ToDo:
+* 3D Model
+-- Texture map
+-- Animate Drag Chute
+-- Add burner flame
+-- Animate ailerons
+-- Animate flaps
+-- Animate speed brakes
+-- Animate aux air doors
+-- Add centerline and wing tanks
+-- Add gear doors
+-- Improve tail hook animation
+
+
+* 3D Cockpit
+-- Correct wall, floor and dash
+-- Rough in aft cockpit
+-- Telelight panel
+
+* FDM
+-- Add Drag Chute
+-- Correctly locate fuel tanks
+-- Correctly locate engines
+-- Model fuel flow thru all tanks
+-- Change fuel quantities to Block 41 Numbers
+
+* 2D Panel
+-- Change VOR 2
+-- New fuel quantity gauge(s) (digital)
+

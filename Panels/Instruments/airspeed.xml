@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+
+<!--
+Airspeed indicator instrument.
+25 March 2006
+Ron Jensen wino@jentronics.com
+
+_______________________________________________________________________________
+
+This is an instrument configuration file for the open-source flight
+simulator FlightGear (www.flightgear.org).  The file is an XML-encoded
+FlightGear property list defining the instrument's layers and actions.
+
+Each instrument is composed of layers stacked on top of each other.
+A layer may be a texture (with transparent parts to show the layers
+underneath), text, or a special layer that switches between two
+others (say, to turn an indicator light on or off).  Each layer can
+move independently in proportion to a property value, and text
+can be generated from property values as well: all of the layer's
+movements are defined as transformations.
+
+Actions are hotspots on the instrument that will respond to a mouse
+click.  Actions always modify the values of properties, either by
+adjusting them, toggling them, or swaping them with other
+properties' values.
+-->
+
+<PropertyList>
+
+ <name>Airspeed Indicator</name>
+ 
+  <w-base>128</w-base>
+  <h-base>128</h-base>
+   
+   <layers>
+    <layer>
+     <name>Mach Dial</name>
+     <texture>   
+     <path>Aircraft/QF-4E/Panels/Instruments/Textures/airspeed-mach.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.0</y1>
+     <x2>1.0</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>128</w>
+     <h>128</h>
+    </layer>
+    <layer>
+     <name>Knots Dial</name>
+     <texture>   
+     <path>Aircraft/QF-4E/Panels/Instruments/Textures/airspeed-knots.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.0</y1>
+     <x2>1.0</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>128</w>
+     <h>128</h>
+    </layer>
+
+    <layer>
+    <name>needle</name>
+      <texture>   
+     <path>Aircraft/QF-4E/Panels/Instruments/Textures/airspeed-needle.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.0</y1>
+     <x2>1.0</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>128</w>
+     <h>128</h>
+   <transformations>
+     <transformation>
+      <type>rotation</type>
+      <property>/velocities/airspeed-kt</property>
+      <min>  0.0</min>
+      <max>800.0</max>
+      <scale>1.0</scale>
+       <interpolation>
+       <entry><ind>   0</ind><dep>    0</dep></entry>
+       <entry><ind>  80</ind><dep>   28</dep></entry>
+       <entry><ind> 100</ind><dep>   45</dep></entry>
+       <entry><ind> 120</ind><dep>   64</dep></entry>
+       <entry><ind> 150</ind><dep>   91</dep></entry>
+       <entry><ind> 200</ind><dep>  132</dep></entry>
+       <entry><ind> 250</ind><dep>  159</dep></entry>
+       <entry><ind> 300</ind><dep>  184</dep></entry>
+       <entry><ind> 400</ind><dep>  222</dep></entry>
+       <entry><ind> 500</ind><dep>  254</dep></entry>
+       <entry><ind> 600</ind><dep>  280</dep></entry>
+       <entry><ind> 700</ind><dep>  305</dep></entry>
+       <entry><ind> 800</ind><dep>  328</dep></entry>
+       </interpolation>
+     </transformation>
+   </transformations>
+  </layer> 
+     <layer>
+      <name>Bezel</name>
+      <texture>   
+      <path>Aircraft/QF-4E/Panels/Instruments/Textures/airspeed-bezel.rgb</path>
+      <x1>0.0</x1>
+      <y1>0.0</y1>
+      <x2>1.0</x2>
+      <y2>1.0</y2>
+      </texture>
+      <w>128</w>
+      <h>128</h>
+     </layer>
+
+
+  </layers>
+</PropertyList>
+
+
+

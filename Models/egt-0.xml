@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>egt.ac</path>
+    <animation>
+    <type>rotate</type>
+    <object-name>bigneedle</object-name>
+     <property>engines/engine[0]/egt_degf</property>
+  <interpolation>
+   <!--        Temp deg        gauge deg-->
+   <entry><ind> 212</ind><dep> 130</dep></entry>
+   <entry><ind> 752</ind><dep> 204</dep></entry>
+   <entry><ind>1202</ind><dep> 266</dep></entry>
+   <entry><ind>1472</ind><dep> 300</dep></entry>
+   <entry><ind>1832</ind><dep> 350</dep></entry>
+   <entry><ind>2192</ind><dep> 400</dep></entry>
+  </interpolation>
+    <axis>
+      <x>-1</x>
+      <y> 0</y>
+      <z> 0</z>
+    </axis>
+  </animation>
+    <animation>
+    <type>rotate</type>
+    <object-name>littleneedle</object-name>
+     <property>engines/engine[0]/egt_degf</property>
+     <factor>1.698</factor>
+     <offset-deg>-16</offset-deg>
+       <center>
+        <x-m>0</x-m>
+        <y-m> 0.0151</y-m>
+        <z-m> 0.0023</z-m>
+       </center>
+
+    <axis>
+      <x>-1</x>
+      <y> 0</y>
+      <z> 0</z>
+    </axis>
+  </animation>
+  <animation> 
+   <object-name>scale</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+  <animation> 
+   <object-name>bigneedle</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+  <animation> 
+   <object-name>littleneedle</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+
+</PropertyList>

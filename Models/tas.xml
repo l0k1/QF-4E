@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>tas.ac</path>
+  <animation>
+  <type>textranslate</type>
+  <object-name>tas01</object-name>
+  <property>/instrumentation/navcomputer/indicated-tas-kt</property>
+  <factor>0.1</factor>
+  <step>1</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>tas02</object-name>
+  <property>/instrumentation/navcomputer/indicated-tas-kt</property>
+  <factor>0.01</factor>
+  <step>10</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>tas03</object-name>
+  <property>/instrumentation/navcomputer/indicated-tas-kt</property>
+  <factor>0.001</factor>
+  <step>100</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>textranslate</type>
+  <object-name>tas04</object-name>
+  <property>/instrumentation/navcomputer/indicated-tas-kt</property>
+  <factor>0.0001</factor>
+  <step>1000</step>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+<!-- lighting -->
+
+  <animation> 
+   <object-name>base</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+  <animation> 
+   <object-name>tas04</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+  <animation> 
+   <object-name>tas03</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+  <animation> 
+   <object-name>tas02</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+  <animation> 
+   <object-name>tas01</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+</PropertyList>

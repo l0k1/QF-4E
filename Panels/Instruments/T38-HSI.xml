@@ -1,0 +1,383 @@
+<?xml version="1.0"?>
+
+<!--
+T-38 HSI, David Culp, davidculp2@attbi.com, Feb 2003
+Based on:
+Default gyro compass instrument.
+
+Started summer 2000 by David Megginson, david@megginson.com.
+
+This is an instrument configuration file for the open-source flight
+simulator FlightGear (www.flightgear.org).  The file is an XML-encoded
+FlightGear property list defining the instrument's layers and actions.
+
+Each instrument is composed of layers stacked on top of each other.
+A layer may be a texture (with transparent parts to show the layers
+underneath), text, or a special layer that switches between two
+others (say, to turn an indicator light on or off).  Each layer can
+move independently in proportion to a property value, and text
+can be generated from property values as well: all of the layer's
+movements are defined as transformations.
+
+Actions are hotspots on the instrument that will respond to a mouse
+click.  Actions always modify the values of properties, either by
+adjusting them, toggling them, or swaping them with other
+properties' values.
+-->
+
+<PropertyList>
+
+ <name>T38-HSI</name>
+ <w-base>170</w-base>
+ <h-base>170</h-base>
+
+ 
+ <layers>
+
+  <layer>
+   <name>localizer card</name>
+   <texture>
+    <path>Aircraft/T38/Instruments/Textures/t38-hsi.rgb</path>
+    <x1>0.58984</x1>
+    <y1>0.00781</y1>
+    <x2>0.99218</x2>
+    <y2>0.42578</y2>
+   </texture>
+   <w>105</w>
+   <h>105</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/instrumentation/nav/radials/selected-deg[0]</property>
+     <scale>1.0</scale>
+    </transformation>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/heading-magnetic-deg[0]</property>
+     <scale>-1.0</scale>
+    </transformation>
+   </transformations>
+  </layer>
+
+ <layer>
+   <name>Localizer Bar</name>
+   <condition>
+    <equals>
+      <property>/instrumentation/nav/in-range</property>
+      <value>true</value>
+    </equals>
+   </condition>
+   <texture>
+    <path>Aircraft/T38/Instruments/Textures/t38-hsi.rgb</path>
+    <x1>0.51562</x1>
+    <y1>0.65234</y1>
+    <x2>0.55297</x2>
+    <y2>0.85547</y2>
+   </texture>
+   <w>8</w>
+   <h>50</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/instrumentation/nav/radials/selected-deg[0]</property>
+     <scale>1.0</scale>
+    </transformation>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/heading-magnetic-deg[0]</property>
+     <scale>-1.0</scale>
+    </transformation>
+    <transformation>
+     <type>x-shift</type>
+     <property>/instrumentation/nav/heading-needle-deflection[0]</property>
+     <scale>4.0</scale>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>compass rose</name>
+   <texture>
+    <path>Aircraft/T38/Instruments/Textures/t38-hsi.rgb</path>
+    <x1>0.0</x1>
+    <y1>0.515625</y1>
+    <x2>0.484375</x2>
+    <y2>1.0</y2>
+   </texture>
+   <w>120</w>
+   <h>120</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/heading-magnetic-deg[0]</property>
+     <scale>-1.0</scale>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>Airplane Symbol</name>
+   <texture>
+    <path>Aircraft/T38/Instruments/Textures/t38-hsi.rgb</path>
+    <x1>0.39453</x1>
+    <y1>0.17578</y1>
+    <x2>0.453125</x2>
+    <y2>0.23438</y2>
+   </texture>
+   <w>16</w>
+   <h>16</h>
+  </layer>
+
+  <layer>
+   <name>heading bug</name>
+   <texture>
+    <path>Aircraft/T38/Instruments/Textures/t38-hsi.rgb</path>
+    <x1>0.22656</x1>
+    <y1>0.42969</y1>
+    <x2>0.2578</x2>
+    <y2>0.44922</y2>
+   </texture>
+   <w>8</w>
+   <h>8</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/autopilot/settings/heading-bug-deg</property>
+    </transformation>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/heading-magnetic-deg[0]</property>
+     <scale>-1.0</scale>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <offset>58</offset>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>Heading Knob</name>
+   <texture>
+    <path>Aircraft/T38/Instruments/Textures/t38-hsi.rgb</path>
+    <x1>0.050781</x1>
+    <y1>0.160156</y1>
+    <x2>0.160156</x2>
+    <y2>0.277344</y2>
+   </texture>
+   <h>29</h>
+   <w>28</w>
+   <transformations>
+    <transformation>
+     <type>x-shift</type>
+     <offset>-72</offset>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <offset>-57</offset>
+    </transformation>
+    <transformation>
+     <type>rotation</type>
+     <property>/autopilot/settings/heading-bug-deg</property>
+     <scale>5.0</scale>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>Course Knob</name>
+   <texture>
+    <path>Aircraft/T38/Instruments/Textures/t38-hsi.rgb</path>
+    <x1>0.050781</x1>
+    <y1>0.304687</y1>
+    <x2>0.160156</x2>
+    <y2>0.417969</y2>
+   </texture>
+   <h>29</h>
+   <w>28</w>
+   <transformations>
+    <transformation>
+     <type>x-shift</type>
+     <offset>71</offset>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <offset>-57</offset>
+    </transformation>
+    <transformation>
+     <type>rotation</type>
+     <property>/instrumentation/nav/radials/selected-deg[0]</property>
+     <scale>5.0</scale>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+    <name>DME display</name>
+    <condition>
+     <equals>
+      <property>/instrumentation/dme/in-range</property>
+      <value>true</value>
+     </equals>
+    </condition>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>1.0</red>
+     <green>1.0</green>
+     <blue>1.0</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/instrumentation/dme/indicated-distance-nm[0]</property>
+      <format>%4.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>-72</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>53</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Course display</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>1.0</red>
+     <green>1.0</green>
+     <blue>1.0</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/instrumentation/nav/radials/selected-deg[0]</property>
+      <format>%5.0f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>51</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>53</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+   <name>VOR needle</name>
+   <texture>
+    <path>Aircraft/T38/Instruments/Textures/t38-hsi.rgb</path>
+    <x1>0.22656</x1>
+    <y1>0.35937</y1>
+    <x2>0.2578</x2>
+    <y2>0.40625</y2>
+   </texture>
+   <w>12</w>
+   <h>12</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/instrumentation/nav[1]/radials/actual-deg[0]</property>
+     <scale>-1.0</scale>
+    </transformation>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/heading-magnetic-deg[0]</property>
+     <scale>-1.0</scale>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <offset>61</offset>
+    </transformation>
+   </transformations>
+  </layer>
+
+</layers>
+
+<actions>
+ 
+  <action>
+   <name>Heading Bug Decrease</name>
+   <button>0</button>
+   <x>-95</x>
+   <y>-69</y>
+   <w>24</w>
+   <h>26</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/autopilot/settings/heading-bug-deg</property>
+    <step>-1</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+
+  <action>
+   <name>Heading Bug Increase</name>
+   <button>0</button>
+   <x>-70</x>
+   <y>-69</y>
+   <w>24</w>
+   <h>26</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/autopilot/settings/heading-bug-deg</property>
+    <step>1</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+
+ 
+  <action>
+   <name>Course Select Decrease</name>
+   <button>0</button>
+   <x>45</x>
+   <y>-71</y>
+   <w>29</w>
+   <h>26</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/nav/radials/selected-deg[0]</property>
+    <step>-1</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+
+  <action>
+   <name>Course Select Increase</name>
+   <button>0</button>
+   <x>75</x>
+   <y>-71</y>
+   <w>24</w>
+   <h>26</h>
+   <binding>
+    <command>property-adjust</command>
+    <property>/instrumentation/nav/radials/selected-deg[0]</property>
+    <step>1</step>
+    <min>0</min>
+    <max>359</max>
+    <wrap>1</wrap>
+   </binding>
+  </action>
+
+ </actions>
+
+</PropertyList>

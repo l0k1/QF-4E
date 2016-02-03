@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>n1.ac</path>
+    <animation>
+    <type>rotate</type>
+    <object-name>bigneedle</object-name>
+     <property>engines/engine[1]/n2</property>
+     <factor>2.65</factor>
+    <axis>
+      <x>-1</x>
+      <y> 0</y>
+      <z> 0</z>
+    </axis>
+  </animation>
+    <animation>
+    <type>rotate</type>
+    <object-name>littleneedle</object-name>
+     <property>engines/engine[1]/n2</property>
+     <factor>36</factor>
+       <center>
+        <x-m>0</x-m>
+        <y-m>-0.0110</y-m>
+        <z-m>0.0128</z-m>
+       </center>
+
+    <axis>
+      <x>-1</x>
+      <y> 0</y>
+      <z> 0</z>
+    </axis>
+  </animation>
+  <animation> 
+   <object-name>scale</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+  <animation> 
+   <object-name>bigneedle</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+  <animation> 
+   <object-name>littleneedle</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+
+</PropertyList>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+  <path>ff.ac</path>
+  <animation>
+    <type>rotate</type>
+    <object-name>needle</object-name>
+    <property>engines/engine[0]/fuel-flow_pph</property>
+    <min>0</min>
+     <max>12000</max>
+     <scale>1</scale>
+     <interpolation>
+       <entry> <ind>    0</ind> <dep>  0</dep> </entry>
+       <entry> <ind> 1000</ind> <dep> 81</dep> </entry>
+       <entry> <ind> 2000</ind> <dep>158</dep> </entry>
+       <entry> <ind> 3000</ind> <dep>236</dep> </entry>
+       <entry> <ind>12000</ind> <dep>327</dep> </entry>
+     </interpolation>
+    <axis>
+      <x>-1</x>
+      <y> 0</y>
+      <z> 0</z>
+    </axis>
+  </animation>
+  <animation> 
+   <object-name>scale</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+  <animation> 
+   <object-name>needle</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+</PropertyList>

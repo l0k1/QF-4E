@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+F4E JSBSim config file
+Ronald Jensen,  pilot@jentronics.com
+************************************************************************
+-->
+<PropertyList>
+  <controls>
+    <gmeter>
+      <reset type="int">1</reset>
+    </gmeter>
+    <flight>
+      <drag-chute type="double">0</drag-chute>
+      <drag-chute-deployed type="bool">"false"</drag-chute-deployed>
+      <drag-chute-jettison type="bool">"false"</drag-chute-jettison>
+    </flight>
+    <gear>
+      <gear-handle-down type="int">1</gear-handle-down>
+    </gear>
+  </controls>
+  <instrumentation>
+    <navcomputer>
+     <brg-switch-position type="int" archive="y">2</brg-switch-position>
+     <mode-switch-position type="int" archive="y">1</mode-switch-position>
+    </navcomputer>
+   <radar-altimeter>
+      <decision-height>300</decision-height>
+    </radar-altimeter>
+    <radar>
+      <range type="int" archive="y">20</range>
+      <minimized type="bool" archive="y">false</minimized>
+    </radar>
+    <altimeter>
+     <mode  type="int" archive="y">0</mode>
+    </altimeter>
+    <clock>
+      <stopwatch-running type="bool">false</stopwatch-running>
+      <stopwatch-seconds type="int">0</stopwatch-seconds>
+    </clock>
+  </instrumentation>
+  <sim>
+    <description>QF-4E Automated Drone</description>
+    <author>Ronald Jensen (FDM), Ronald Jensen (3D)</author>
+    <status>alpha</status>
+    <flight-model>jsb</flight-model>
+    <aero>F4E-2b</aero>
+    <ai>
+      <!--scenario>refueling_demo</scenario-->
+      <scenario>NUQ_aircraft_demo</scenario>
+    </ai>
+    <allow-toggle-cockpit type="bool">true</allow-toggle-cockpit>
+    <aoa-indexer>
+      <too-slow-deg>15.57</too-slow-deg>
+      <slow-deg>14.4</slow-deg>
+      <fast-deg>12.46</fast-deg>
+      <too-fast-deg>11.43</too-fast-deg>
+    </aoa-indexer>
+    <sound>
+      <path>Aircraft/QF-4E/F4E-sound.xml</path>
+    </sound>
+    <panel>
+      <path>Aircraft/QF-4E/Panels/F4E-panel-with-wxradar.xml</path>
+      <visibility archive="y">false</visibility>
+    </panel>
+    <systems>
+      <electrical>
+        <path>Aircraft/QF-4E/Systems/F4E-electrical.xml</path>
+      </electrical>
+      <autopilot>
+        <path>Aircraft/QF-4E/Systems/F4E-autopilot.xml</path>
+      </autopilot>
+    </systems>
+  <model>
+   <path>Aircraft/QF-4E/Models/F4E.xml</path>
+  </model>
+  <submodels>
+    <serviceable type="bool">true</serviceable>
+    <path>Aircraft/QF-4E/Models/F4-submodels.xml</path>
+  </submodels>
+    <view n="0">
+      <name>Cockpit</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <x-offset-m type="double">0.0</x-offset-m>
+        <y-offset-m type="double">0.65</y-offset-m>
+        <z-offset-m type="double">-4.25</z-offset-m>
+        <pitch-offset-deg>-19</pitch-offset-deg>
+        <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
+      </config>
+    </view>
+  <view n="2">
+    <name>Aft Cockpit View</name>
+    <type>lookfrom</type>
+    <internal type="bool">true</internal>
+    <config>
+      <from-model type="bool">true</from-model>
+      <from-model-idx type="int">0</from-model-idx>
+      <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+      <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
+      <default-pitch-deg type="double">0</default-pitch-deg>
+      <default-heading-deg type="double">0</default-heading-deg>
+      <front-direction-deg type="double">0</front-direction-deg>
+      <front-left-direction-deg type="double">45</front-left-direction-deg>
+      <left-direction-deg type="double">90</left-direction-deg>
+      <back-left-direction-deg type="double">135</back-left-direction-deg>
+      <back-direction-deg type="double">180</back-direction-deg>
+      <back-right-direction-deg type="double">225</back-right-direction-deg>
+      <right-direction-deg type="double">270</right-direction-deg>
+      <front-right-direction-deg type="double">315</front-right-direction-deg>
+      <x-offset-m type="double">0.0</x-offset-m>
+      <y-offset-m type="double">1.022</y-offset-m>
+      <z-offset-m type="double">-1.921</z-offset-m>
+      <pitch-offset-deg>0</pitch-offset-deg>
+      <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
+    </config>
+    <dynamic>
+     <enabled type="bool" userarchive="y">false</enabled>
+    </dynamic>
+  </view>
+
+    <chase-distance-m>-40</chase-distance-m>
+    <help>
+<!-- incomplete -->
+      <title>F-4E</title>
+      <line>Vr xxx KIAS</line>
+      <line>Vy xxx KIAS</line>
+      <line>________________________Procedures_________________________</line>
+      <line>Takeoff: full flaps, full throttle</line>
+      <line>         10-12 degrees pitch</line>
+      <line>         gear and flaps up before 250 KIAS</line>
+      <line>Normal landing: gear down, 155 KIAS w/full flaps.</line>
+      <line>________________________Keys_________________________</line>
+      <line>Ctrl-B:  Toggle Speedbrake</line>
+      <line>Ctrl-D:  Toggle dragchute</line>
+      <line>O: Tail Hook down</line>
+      <line>o: Tail Hook up</line>
+      <line>Ctrl-U/U/u: Seat default/down/up</line>
+      <line>__________________NAVIGATION_INSTRUMENTS_____________</line>
+      <line>BRG/DIST switch:</line>
+      <line>  VOR/TAC: Bearing pointer and DME from VOR 1</line>
+      <line>      TAC: Bearing pointer and DME from TACAN</line>
+      <line>  ADF/TAC: Bearing pointer from ADF, DME from TACAN</line>
+      <line>  NAV COMP: Bearing pointer from VOR 1, DME from TACAN</line>
+    </help>
+  </sim>
+  <engines>
+    <engine n="0">
+      <running>true</running>
+    </engine>
+    <engine n="1">
+      <running>true</running>
+    </engine>
+  </engines>
+  <nasal>
+    <F4-constant>
+     <file>Aircraft/QF-4E/Nasal/F4-constants.nas</file>
+     <module>F4</module>
+    </F4-constant>
+    <F4-instrument>
+      <file>Aircraft/QF-4E/Nasal/F4-instruments.nas</file>
+      <module>F4</module>
+    </F4-instrument>
+    <F4-fuel>
+      <file>Aircraft/QF-4E/Nasal/F4-fuel.nas</file>
+      <module>F4</module>
+    </F4-fuel>
+    <F4>
+      <file>Aircraft/QF-4E/Nasal/F4-jsbsim.nas</file>
+    </F4>
+    <gmeter>
+      <file>Aircraft/QF-4E/Nasal/gmeter.nas</file>
+    </gmeter>
+    <squatswitch>
+      <file>Aircraft/QF-4E/Nasal/squatswitch.nas</file>
+    </squatswitch>
+	<drone>
+	  <file>Aircraft/QF-4E/Nasal/drone.nas</file>
+	</drone>
+	<damage>
+	  <file>Aircraft/QF-4E/Nasal/damage.nas</file>
+	</damage>
+  </nasal>
+  <input>
+    <keyboard>
+<!-- map keys for speedbrake -->
+      <key n="2">
+        <name>Ctrl-B</name>
+        <desc>Toggle speedbrake.</desc>
+        <binding>
+          <command>property-toggle</command>
+          <property>/controls/flight/speedbrake</property>
+        </binding>
+      </key>
+   <key n="4">
+    <name>Ctrl-D</name>
+    <desc>Deploy Dragchute</desc>
+    <binding>
+     <command>nasal</command>
+     <script>F4.dragChuteExport()</script>
+    </binding>
+  </key><!-- map keys for arresting hook -->
+      <key n="79">
+        <name>O</name>
+        <desc>Hook down.</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>controls/gear/tailhook</property>
+          <value type="double">1.0</value>
+        </binding>
+      </key>
+      <key n="111">
+        <name>o</name>
+        <desc>Hook Up.</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>controls/gear/tailhook</property>
+          <value type="double">0.0</value>
+        </binding>
+      </key>
+<!-- map keys for seat vertical adjust -->
+      <key n="21">
+        <name>CTRL-U</name>
+        <desc>Seat Default.</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/controls/seat/vertical-adjust</property>
+          <value type="double">0</value>
+        </binding>
+        <binding>
+          <condition>
+            <equals>
+              <property>sim/current-view/view-number</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <command>property-assign</command>
+          <property>sim/current-view/y-offset-m</property>
+          <value type="double">0.65</value>
+        </binding>
+      </key>
+      <key n="85">
+        <name>U</name>
+        <desc>Seat Down.</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/seat/vertical-adjust</property>
+          <step type="double">-0.01</step>
+          <min type="double">-0.05</min>
+          <max type="double">0.05</max>
+        </binding>
+        <binding>
+          <condition>
+            <equals>
+              <property>sim/current-view/view-number</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <command>property-adjust</command>
+          <property>sim/current-view/y-offset-m</property>
+          <step type="double">-0.05</step>
+          <min type="double">0.40</min>
+          <max type="double">0.90</max>
+        </binding>
+      </key>
+      <key n="117">
+        <name>u</name>
+        <desc>Seat Up.</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>controls/seat/vertical-adjust</property>
+          <step type="double">0.01</step>
+          <min type="double">-0.05</min>
+          <max type="double">0.05</max>
+        </binding>
+        <binding>
+          <condition>
+            <equals>
+              <property>sim/current-view/view-number</property>
+              <value>0</value>
+            </equals>
+          </condition>
+          <command>property-adjust</command>
+          <property>sim/current-view/y-offset-m</property>
+          <step type="double">0.05</step>
+          <min type="double">0.40</min>
+          <max type="double">0.90</max>
+        </binding>
+      </key>
+    </keyboard>
+  </input>
+
+</PropertyList>

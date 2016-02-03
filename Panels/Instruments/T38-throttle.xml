@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <name>Throttle Quadrant</name>
+ <w-base>128</w-base>
+ <h-base>200</h-base>
+
+ <layers>
+
+  <layer>
+   <name>Background</name>
+   <type>texture</type>
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/throttle.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.0</y1>
+     <x2>0.49218</x2>
+     <y2>0.77734</y2>
+    </texture>
+    <w>128</w>
+    <h>200</h>
+  </layer>
+
+  <layer>
+   <name>Throttle One</name>
+   <type>texture</type>
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/throttle.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.91015</y1>
+     <x2>0.15234</x2>
+     <y2>1.0</y2>
+    </texture>
+    <w>40</w>
+    <h>24</h>
+    <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <property>/controls/engines/engine[0]/throttle</property>
+       <scale>110</scale>
+       <offset>-35</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>-44</offset>
+      </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+   <name>Throttle Two</name>
+   <type>texture</type>
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/throttle.rgb</path>
+     <x1>0.16797</x1>
+     <y1>0.91015</y1>
+     <x2>0.32031</x2>
+     <y2>1.0</y2>
+    </texture>
+    <w>40</w>
+    <h>24</h>
+    <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <property>/controls/engines/engine[1]/throttle</property>
+       <scale>110</scale>
+       <offset>-35</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>-2</offset>
+      </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+   <name>Flap Handle</name>
+   <type>texture</type>
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/throttle.rgb</path>
+     <x1>0.35156</x1>
+     <y1>0.87891</y1>
+     <x2>0.54297</x2>
+     <y2>1.0</y2>
+    </texture>
+    <w>50</w>
+    <h>32</h>
+    <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <property>/controls/flight/flaps</property>
+       <scale>-110</scale>
+       <offset>67</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>59</offset>
+      </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+   <name>Cutoff One</name>
+   <type>texture</type>
+    <condition>
+      <equals>
+       <property>/controls/engines/engine[0]/cutoff</property>
+       <value>true</value>
+      </equals>
+    </condition> 
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/throttle.rgb</path>
+     <x1>0.54687</x1>
+     <y1>0.09745</y1>
+     <x2>0.69922</x2>
+     <y2>0.17578</y2>
+    </texture>
+    <w>40</w>
+    <h>23</h>
+    <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>-65</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>-45</offset>
+      </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+   <name>Cutoff Two</name>
+   <type>texture</type>
+    <condition>
+      <equals>
+       <property>/controls/engines/engine[1]/cutoff</property>
+       <value>true</value>
+      </equals>
+    </condition> 
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/throttle.rgb</path>
+     <x1>0.54687</x1>
+     <y1>0.09745</y1>
+     <x2>0.69922</x2>
+     <y2>0.17578</y2>
+    </texture>
+    <w>40</w>
+    <h>23</h>
+    <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>-65</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>-2</offset>
+      </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+   <name>Start One</name>
+   <type>texture</type>
+    <condition>
+      <equals>
+       <property>/controls/engines/engine[0]/starter</property>
+       <value>true</value>
+      </equals>
+    </condition> 
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/throttle.rgb</path>
+     <x1>0.54687</x1>
+     <y1>0.0</y1>
+     <x2>0.69922</x2>
+     <y2>0.08594</y2>
+    </texture>
+    <w>40</w>
+    <h>22</h>
+    <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>-89</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>-45</offset>
+      </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+   <name>Start Two</name>
+   <type>texture</type>
+    <condition>
+      <equals>
+       <property>/controls/engines/engine[1]/starter</property>
+       <value>true</value>
+      </equals>
+    </condition> 
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/throttle.rgb</path>
+     <x1>0.54687</x1>
+     <y1>0.0</y1>
+     <x2>0.69922</x2>
+     <y2>0.08594</y2>
+    </texture>
+    <w>40</w>
+    <h>22</h>
+    <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>-89</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>-2</offset>
+      </transformation>
+    </transformations>
+  </layer>
+
+ </layers>
+
+ <actions>
+
+  <action>
+   <desc>Fuel Cutoff, Engine #1</desc>
+   <button>0</button>
+   <x>-64</x>
+   <y>-78</y>
+   <w>40</w>
+   <h>24</h>
+   <binding>
+    <command>property-toggle</command>
+    <property>/controls/engines/engine[0]/cutoff</property>
+   </binding>
+  </action>
+
+  <action>
+   <desc>Fuel Cutoff, Engine #2</desc>
+   <button>0</button>
+   <x>-22</x>
+   <y>-78</y>
+   <w>40</w>
+   <h>24</h>
+   <binding>
+    <command>property-toggle</command>
+    <property>/controls/engines/engine[1]/cutoff</property>
+   </binding>
+  </action>
+
+  <action>
+   <desc>Starter, Engine #1</desc>
+   <button>0</button>
+   <x>-64</x>
+   <y>-100</y>
+   <w>40</w>
+   <h>22</h>
+   <binding>
+    <command>property-toggle</command>
+    <property>/controls/engines/engine[0]/starter</property>
+   </binding>
+  </action>
+
+  <action>
+   <desc>Starter, Engine #2</desc>
+   <button>0</button>
+   <x>-22</x>
+   <y>-100</y>
+   <w>40</w>
+   <h>22</h>
+   <binding>
+    <command>property-toggle</command>
+    <property>/controls/engines/engine[1]/starter</property>
+   </binding>
+  </action>
+
+
+ </actions> 
+
+</PropertyList>

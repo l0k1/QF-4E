@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+
+<!--
+Adapted to military airplanes
+With glide slope indicator on left side
+David Culp, davidculp2@attbi.com, Feb 2003, GPL
+
+Improved artificial horizon instrument.
+Mar 20 2000
+Martin Dressler dr@musicabona.cz
+Artificial horizont from C172RG small versionn
+GPL
+_______________________________________________________________________________
+
+Based on Default by David Megginson, david@megginson.com.
+
+This is an instrument configuration file for the open-source flight
+simulator FlightGear (www.flightgear.org).  The file is an XML-encoded
+FlightGear property list defining the instrument's layers and actions.
+
+Each instrument is composed of layers stacked on top of each other.
+A layer may be a texture (with transparent parts to show the layers
+underneath), text, or a special layer that switches between two
+others (say, to turn an indicator light on or off).  Each layer can
+move independently in proportion to a property value, and text
+can be generated from property values as well: all of the layer's
+movements are defined as transformations.
+
+Actions are hotspots on the instrument that will respond to a mouse
+click.  Actions always modify the values of properties, either by
+adjusting them, toggling them, or swaping them with other
+properties' values.
+-->
+
+<PropertyList>
+
+ <name>F4 Artifical horizon</name>
+
+ <w-base>128</w-base>
+ <h-base>128</h-base>
+
+ <layers>
+  <layer>
+   <name>background</name>
+   <texture>
+    <path>Aircraft/QF-4E/Panels/Instruments/Textures/ADI.rgb</path>
+    <x1>0.0</x1>
+    <y1>0.0</y1>
+    <x2>0.5</x2>
+    <y2>0.5</y2>
+<!--    <y2>0.4531</y2> -->
+   </texture>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/roll-deg</property>
+     <min>-360.0</min>
+     <max>360.0</max>
+     <scale>-1</scale>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>pitchback</name>
+   <texture>
+    <path>Aircraft/QF-4E/Panels/Instruments/Textures/ADI.rgb</path>
+    <x1>0.5</x1>
+    <y1>0.0</y1>
+    <x2>0.875</x2>
+    <y2>0.25</y2>
+   </texture>
+   <w>92</w>
+   <h>62</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/roll-deg</property>
+     <min>-360.0</min>
+     <max>360.0</max>
+     <scale>-1</scale>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <property>/orientation/pitch-deg</property>
+     <min>-7.0</min>
+     <max>7.0</max>
+     <scale>-1.075</scale>
+     <offset>0</offset>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>pitch</name>
+   <texture>
+    <path>Aircraft/QF-4E/Panels/Instruments/Textures/ADI.rgb</path>
+    <x1>0.5</x1>
+    <y1>0.0</y1>
+    <x2>0.875</x2>
+    <y2>0.25</y2>
+   </texture>
+   <w>92</w>
+   <h>62</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/roll-deg</property>
+     <min>-360.0</min>
+     <max>360.0</max>
+     <scale>-1</scale>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <property>/orientation/pitch-deg</property>
+     <min>-20.0</min>
+     <max>20.0</max>
+     <scale>-1.075</scale>
+     <offset>0</offset>
+    </transformation>
+   </transformations>
+  </layer>
+ 
+  <layer>
+   <name>bezel</name>
+   <texture>
+    <path>Aircraft/QF-4E/Panels/Instruments/Textures/ADI.rgb</path>
+    <x1>0.5</x1>
+    <y2>0.5</y2>
+    <x2>1.0</x2>
+    <y1>1.0</y1>
+   </texture>
+  </layer>
+
+  <layer>
+   <name>plane</name>
+   <texture>
+    <path>Aircraft/QF-4E/Panels/Instruments/Textures/ADI.rgb</path>
+    <x1>0.5</x1>
+    <y1>0.25</y1>
+    <x2>0.75</x2>
+    <y2>0.40625</y2>
+   </texture>
+   <h>42</h>
+   <w>66</w>
+   <transformations>
+    <transformation>
+     <type>y-shift</type>
+     <property>/steam/horizon-adjust</property>
+     <offset>-17</offset>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>sky pointer</name>
+   <texture>
+    <path>Aircraft/QF-4E/Panels/Instruments/Textures/ADI.rgb</path>
+    <x1>0.03125</x1>
+    <y2>0.53125</y2>
+    <x2>0.46875</x2>
+    <y1>0.96875</y1>
+   </texture>
+   <w>116</w>
+   <h>116</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/orientation/roll-deg</property>
+     <min>-360.0</min>
+     <max>360.0</max>
+     <scale>-1</scale>
+    </transformation>
+   </transformations>
+  </layer>
+ 
+  <layer>
+   <name>Glideslope Needle</name>
+   <condition>
+    <equals>
+      <property>/instrumentation/nav/in-range</property>
+      <value>true</value>
+    </equals>
+   </condition>
+   <texture>
+    <path>Aircraft/QF-4E/Panels/Instruments/Textures/ADI.rgb</path>
+    <x1>0.0</x1>
+    <y1>0.98047</y1>
+    <x2>0.0157</x2>
+    <y2>1.0</y2>
+   </texture>
+   <h>5</h>
+   <w>10</w>
+   <transformations>
+    <transformation>
+     <type>x-shift</type>
+     <offset>-52</offset>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <property>/instrumentation/nav/gs-needle-deflection[0]</property>
+     <min>-5</min>
+     <max>5</max>
+     <scale>4.0</scale>
+     </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>Glideslope Mask</name>
+   <texture>
+    <path>Aircraft/QF-4E/Panels/Instruments/Textures/ADI.rgb</path>
+    <x1>0.94531</x1>
+    <y1>0</y1>
+    <x2>1.0</x2>
+    <y2>0.36719</y2>
+   </texture>
+   <h>95</h>
+   <w>27</w>
+   <transformations>
+    <transformation>
+     <type>x-shift</type>
+     <offset>-53</offset>
+    </transformation>
+   </transformations>
+  </layer>
+<layer>
+   <name>tube-back</name>
+   <texture>
+    <path>Aircraft/Instruments/Textures/maintc.rgb</path>
+    <x1>0.01171875</x1>
+    <x2>0.9921875</x2>
+    <y1>0.7421875</y1>
+    <y2>1.0</y2>
+   </texture>
+   <w>60</w>
+   <h>20</h>
+  <transformations>
+  <transformation> 
+    <type>y-shift</type>
+	<offset>-55</offset>
+   </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>ball</name>
+   <texture>
+    <path>Aircraft/Instruments/Textures/maintc.rgb</path>
+    <x1>0.00390625</x1>
+    <x2>0.16796875</x2>
+    <y1>0.2890625</y1>
+    <y2>0.453125</y2>
+   </texture>
+   <w>10</w>
+   <h>11</h>
+   <transformations>
+    <transformation>
+     <type>rotation</type>
+     <property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+     <min>-0.5</min>
+     <max>0.5</max>
+     <scale>50.0</scale>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+      <min>-0.5</min>
+      <max>0.0</max> 
+      <scale>5.0</scale>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+      <min>0.0</min>
+      <max>1.1</max> 
+      <scale>-5.0</scale>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <offset>-58</offset>
+    </transformation> 
+   </transformations>
+  </layer>
+  <layer>
+   <name>tube</name>
+   <texture>
+    <path>Aircraft/Instruments/Textures/maintc.rgb</path>
+    <x1>0.01171875</x1>
+    <x2>0.9921875</x2>
+    <y1>0.015625</y1>
+    <y2>0.2890625</y2>
+   </texture>
+   <w>60</w>
+   <h>20</h>
+  <transformations>
+  <transformation> 
+    <type>y-shift</type>
+	<offset>-55</offset>
+   </transformation>
+   </transformations>
+  </layer>
+ 
+ </layers>
+
+</PropertyList>

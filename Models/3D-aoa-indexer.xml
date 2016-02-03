@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+
+<!-- AoA Indexer, by Ron Jensen -->
+<!-- Angle of Attack indexer, as used on USAF F4E aircraft.  The
+     operation of these things is simple.  When the AoA is too low, the
+     bottom arrow glows red.  This indicates to the pilot that they
+     should pull back on the stick to raise the nose and slow down.
+     When the AoA is too high, the pilot gets a red, downward
+     pointing top arrow telling him to push the stick forward, lower
+     the nose, and speed up.
+
+     This instrument needs its angle thresholds supplied externally
+     (probably from the aircraft -set file), in these four properties:
+       /sim/aoa-indexer/too-slow-deg  (usually target +1.5 deg)
+       /sim/aoa-indexer/slow-deg      (target +0.5 deg)
+       /sim/aoa-indexer/fast-deg      (target -0.5 deg)
+       /sim/aoa-indexer/too-fast-deg  (target -1.5 deg)
+
+     Note that there is no instrument background texture.  This just
+     applies alpha-blended "lights" to something else in the 3D
+     cockpit.
+-->
+
+<PropertyList>
+
+ <path>aoa-indexer.ac</path>
+<animation>
+  <type>select</type>
+  <object-name>top_light</object-name>
+   <condition>
+    <greater-than>
+     <property>/orientation/alpha-deg</property>
+     <property>/sim/aoa-indexer/slow-deg</property>
+    </greater-than>
+   </condition>
+   <!--emission>
+     <red>1.0</red>
+     <green>0.3</green>
+     <blue>0.3</blue>
+    <factor-prop>controls/lighting/instruments-norm</factor-prop>
+   </emission--> 
+ </animation> 
+
+ <animation>
+  <type>select</type>
+  <object-name>mid_light</object-name>
+   <condition>
+    <less-than>
+     <property>/orientation/alpha-deg</property>
+     <property>/sim/aoa-indexer/too-slow-deg</property>
+    </less-than>
+    <greater-than>
+     <property>/orientation/alpha-deg</property>
+     <property>/sim/aoa-indexer/too-fast-deg</property>
+    </greater-than>
+   </condition>
+   <!--emission>
+     <red>1.0</red>
+     <green>0.3</green>
+     <blue>0.3</blue>
+    <factor-prop>controls/lighting/instruments-norm</factor-prop>
+   </emission--> 
+ </animation> 
+
+ <animation>
+  <type>select</type>
+  <object-name>bot_light</object-name>
+   <condition>
+    <less-than>
+     <property>/orientation/alpha-deg</property>
+     <property>/sim/aoa-indexer/fast-deg</property>
+    </less-than>
+   </condition>
+   <!--emission>
+     <red>1.0</red>
+     <green>0.3</green>
+     <blue>0.3</blue>
+    <factor-prop>controls/lighting/instruments-norm</factor-prop>
+   </emission--> 
+ </animation> 
+
+ <!-- *** LoD ***
+ <animation>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>10</max-m>
+ </animation>
+ -->
+</PropertyList>

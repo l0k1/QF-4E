@@ -1,0 +1,13 @@
+Fuel is carried internally in a fuselage tank, made up of interconnected cells, and two internal wing tanks.  External fuel is carried in drop tanks; two 370-gallon wing-mounted units, and a 600-gallon fuselage mounted unit. All tanks may be refueled on the ground throu a single refueling receptacle. External tanks may be individually fueled through external filler points.
+The fueselage cells are arranged so cell 1, ther engine feed cell, is behind the aft bulkhead of the rear cockpit. The remainder of the cells are numbered consecutively, with cell 7 being the most aft cell.  On aircraft 68-495 and up, the fuselage cells are self-sealing.  Flapper valves in cells 1,2, and 4 prevent reverse flow throught the cells when the aircraft is in a climbing attitude.  Cells 4 and 6 each contain one hydraulic and one electric fuel transfer pump to transfer fueselage fuel to cells 1 and 2.  Regulated engine bleed air pressure transfers internal wing fuel and external fuel to the fuselage cells.  Fuel will not transfer from the internal wing or external tanks until the weight is off the gear and the tanks are pressurize.  Air pressure is also used to facilitate dumping internal wing fuel and to maintain a positive pressure in all tanks.  Float type fuel level control valves control fuel level during refueling of fuel transfer operations. The fuselage cells and internal wing tanks contain capacitance-type fuel gaging units which read out in pounds on the fuel quantity indicator.  The external wing tanks are vented to the internal wing tank dump lines, while all other tanks are vented to the fuel vent mast, located immediately below the rudder.
+
+*NOTE*
+Cells 2 through 6 are so arranged that they will gravity flow into cell 1 (with the exception of approximately 1500 pounds) if a complete transfer pump failure occurs.
+
+[...]
+
+Cell 2 transfers to cell 1 by gravity only; cell 3 gravity feeds cell 4; and cell 5 gravity feeds cell 6.  Cell 7 gravity feeds cell 6 when the fuel level in cell 1 and 2 drops below 1800 pounds (as indicated on the tape).
+
+[... Transfer paraphrase ...]
+When WoW is false and pitch is under 75° and over -15°, wing and external tanks feed tank 3 (and 4).  At the same time fuel is drawn from tank 5 and 6.
+

@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+ <name>Gear Indicator</name>
+ <w-base>80</w-base>
+ <h-base>200</h-base>
+
+ <layers>
+
+  <layer>
+   <name>Left Main Light</name>
+   <type>texture</type>
+    <condition>
+      <equals>
+       <property>/gear/gear/position-norm[0]</property>
+       <value>1.0</value>
+      </equals>
+    </condition> 
+    <texture>
+     <path>Aircraft/T38/Instruments/Textures/t38-gear.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.94531</y1>
+     <x2>0.05078</x2>
+     <y2>1.0</y2>
+    </texture>
+     <w>10</w>
+     <h>10</h>
+    <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>8</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>-17</offset>
+      </transformation>
+    </transformations>
+   </layer>
+
+
+  <layer>
+   <name>Right Main Light</name>
+   <type>texture</type>
+    <condition>
+      <equals>
+       <property>/gear/gear/position-norm[0]</property>
+       <value>1.0</value>
+      </equals>
+    </condition> 
+     <texture>
+     <path>Aircraft/T38/Instruments/Textures/t38-gear.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.94531</y1>
+     <x2>0.05078</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>10</w>
+     <h>10</h>
+     <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>8</offset>
+      </transformation>
+      <transformation>
+       <type>x-shift</type>
+       <offset>17</offset>
+      </transformation>
+     </transformations>
+  </layer>
+
+
+  <layer>
+   <name>Nose Gear Light</name>
+   <type>texture</type>
+    <condition>
+      <equals>
+       <property>/gear/gear/position-norm[0]</property>
+       <value>1.0</value>
+      </equals>
+    </condition> 
+     <texture>
+     <path>Aircraft/T38/Instruments/Textures/t38-gear.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.94531</y1>
+     <x2>0.05078</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>10</w>
+     <h>10</h>
+     <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>18</offset>
+      </transformation>
+     </transformations>
+  </layer>
+
+  <layer>
+   <name>Handle</name>
+   <type>switch</type>
+    <layer>
+     <name>Command Down</name>
+     <type>texture</type>
+     <condition>
+      <equals>
+       <property>/controls/gear/gear-down</property>
+       <value>true</value>
+      </equals>
+     </condition>
+     <texture>
+     <path>Aircraft/T38/Instruments/Textures/t38-gear.rgb</path>
+     <x1>0.09375</x1>
+     <y1>0.88281</y1>
+     <x2>0.141176</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>13</w>
+     <h>30</h>
+     <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>-47</offset>
+      </transformation>
+     </transformations>
+    </layer>
+    <layer>
+     <name>Command Up, Light Off</name>
+     <type>texture</type>
+     <condition>
+      <and>
+      <equals>
+       <property>/controls/gear/gear-down</property>
+       <value>false</value>
+      </equals>
+      <greater-than>
+       <property>/controls/engines/engine[0]/throttle</property>
+       <value>0.1</value>
+      </greater-than>
+      </and>
+     </condition>
+     <texture>
+     <path>Aircraft/T38/Instruments/Textures/t38-gear.rgb</path>
+     <x1>0.09375</x1>
+     <y1>0.88281</y1>
+     <x2>0.140625</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>13</w>
+     <h>30</h>
+     <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>0</offset>
+      </transformation>
+     </transformations>
+   </layer>
+    <layer>
+     <name>Command Up, Light On</name>
+     <type>texture</type>
+     <condition>
+      <and>
+      <equals>
+       <property>/controls/gear/gear-down</property>
+       <value>false</value>
+      </equals>
+      <less-than>
+       <property>/controls/engines/engine[0]/throttle</property>
+       <value>0.10000001</value>
+      </less-than>
+      </and>
+     </condition>
+     <texture>
+     <path>Aircraft/T38/Instruments/Textures/t38-gear.rgb</path>
+     <x1>0.160784</x1>
+     <y1>0.88281</y1>
+     <x2>0.20392</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>13</w>
+     <h>30</h>
+     <transformations>
+      <transformation>
+       <type>y-shift</type>
+       <offset>0</offset>
+      </transformation>
+     </transformations>
+   </layer>
+  </layer>
+
+ </layers>
+ 
+ <actions>
+  <action>
+   <desc>gear</desc>
+   <button>0</button>
+   <x>-32</x>
+   <y>-52</y>
+   <w>64</w>
+   <h>63</h>
+   <binding>
+    <command>property-toggle</command>
+    <property>/controls/gear/gear-down</property>
+   </binding>
+  </action>
+ </actions>
+
+</PropertyList>

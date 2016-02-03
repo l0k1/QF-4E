@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>radar-altimeter.ac</path>
+  <params>
+    <height>/position/altitude-agl-ft</height>
+    <decision-height>/instrumentation/radar-altimeter/decision-height</decision-height>
+  </params>
+ 
+ <animation>
+    <type>pick</type>
+    <object-name>knob</object-name>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+    <action>
+      <button>0</button>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/radar-altimeter/decision-height</property>
+        <step>50</step>
+        <min>0</min>
+        <max>5000</max>
+        <wrap>0</wrap>
+      </binding>
+    </action>
+    <action>
+      <button>1</button>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/radar-altimeter/decision-height</property>
+        <step>-50</step>
+        <min>0</min>
+        <max>5000</max>
+        <wrap>0</wrap>
+      </binding>
+    </action>
+  </animation>
+  <animation>
+   <type>texrotate</type>
+   <object-name>knob</object-name>
+   <property>/instrumentation/radar-altimeter/decision-height</property>
+   <scale>0.054</scale>
+    <center>
+     <x>0.14509804</x>
+     <y>0.078431373</y>
+     <z>0</z>
+    </center>
+    <axis>
+     <x>0</x>
+     <y>0</y>
+     <z>1</z>
+    </axis>
+   </animation>
+
+    <animation>
+    <type>rotate</type>
+    <object-name>needle</object-name>
+     <property>/position/altitude-agl-ft</property>
+     <interpolation>
+      <entry> <ind>   0</ind> <dep>  0</dep> </entry>
+      <entry> <ind>  50</ind> <dep> 38</dep> </entry>
+      <entry> <ind> 100</ind> <dep> 69</dep> </entry>
+      <entry> <ind> 150</ind> <dep> 94</dep> </entry>
+      <entry> <ind> 200</ind> <dep>115</dep> </entry>
+      <entry> <ind> 300</ind> <dep>148</dep> </entry>
+      <entry> <ind> 400</ind> <dep>171</dep> </entry>
+      <entry> <ind> 500</ind> <dep>190</dep> </entry>
+      <entry> <ind> 700</ind> <dep>215</dep> </entry>
+      <entry> <ind>1000</ind> <dep>238</dep> </entry>
+      <entry> <ind>1500</ind> <dep>260</dep> </entry>
+      <entry> <ind>2000</ind> <dep>272</dep> </entry>
+      <entry> <ind>3000</ind> <dep>299</dep> </entry>
+      <entry> <ind>4000</ind> <dep>317</dep> </entry>
+      <entry> <ind>5000</ind> <dep>330</dep> </entry>
+      <entry> <ind>5500</ind> <dep>359</dep> </entry>
+     </interpolation>
+
+    <axis>
+      <x>-1</x>
+      <y> 0</y>
+      <z> 0</z>
+    </axis>
+  </animation>
+    <animation>
+    <type>rotate</type>
+    <object-name>bug</object-name>
+     <property>/instrumentation/radar-altimeter/decision-height</property>
+     <interpolation>
+      <entry> <ind>   0</ind> <dep>  0</dep> </entry>
+      <entry> <ind>  50</ind> <dep> 38</dep> </entry>
+      <entry> <ind> 100</ind> <dep> 69</dep> </entry>
+      <entry> <ind> 150</ind> <dep> 94</dep> </entry>
+      <entry> <ind> 200</ind> <dep>115</dep> </entry>
+      <entry> <ind> 300</ind> <dep>148</dep> </entry>
+      <entry> <ind> 400</ind> <dep>171</dep> </entry>
+      <entry> <ind> 500</ind> <dep>190</dep> </entry>
+      <entry> <ind> 700</ind> <dep>215</dep> </entry>
+      <entry> <ind>1000</ind> <dep>238</dep> </entry>
+      <entry> <ind>1500</ind> <dep>260</dep> </entry>
+      <entry> <ind>2000</ind> <dep>272</dep> </entry>
+      <entry> <ind>3000</ind> <dep>299</dep> </entry>
+      <entry> <ind>4000</ind> <dep>317</dep> </entry>
+      <entry> <ind>5000</ind> <dep>330</dep> </entry>
+      <entry> <ind>5500</ind> <dep>359</dep> </entry>
+     </interpolation>
+
+    <axis>
+      <x>-1</x>
+      <y> 0</y>
+      <z> 0</z>
+    </axis>
+  </animation>
+ <animation>
+  <type>select</type>
+  <object-name>light-on</object-name>
+   <condition>
+    <less-than>
+     <property>/position/altitude-agl-ft</property>
+     <property>/instrumentation/radar-altimeter/decision-height</property>
+    </less-than>
+   </condition>
+ </animation> 
+
+  <animation> 
+   <object-name>scale</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+  <animation> 
+   <object-name>needle</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+  <animation> 
+   <object-name>bug</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>/controls/lighting/instruments-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.34</green>
+        <blue>0.18</blue>
+      </emission>
+  </animation>
+
+</PropertyList>
