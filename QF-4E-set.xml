@@ -41,14 +41,16 @@ Ronald Jensen,  pilot@jentronics.com
   </instrumentation>
   <sim>
     <description>QF-4E Automated Drone</description>
-    <author>Ronald Jensen (FDM), Ronald Jensen (3D)</author>
+    <author>Ronald Jensen (FDM), Ronald Jensen (3D), Justin Nicholson(drone, some 3D), Necolatis(damage model)</author>
+	
     <status>alpha</status>
     <flight-model>jsb</flight-model>
     <aero>F4E-2b</aero>
-    <ai>
-      <!--scenario>refueling_demo</scenario-->
-      <scenario>NUQ_aircraft_demo</scenario>
-    </ai>
+	
+	<startup>
+	<splash-texture>Aircraft/QF-4E/splash.png</splash-texture>
+	</startup>
+
     <allow-toggle-cockpit type="bool">true</allow-toggle-cockpit>
     <aoa-indexer>
       <too-slow-deg>15.57</too-slow-deg>
