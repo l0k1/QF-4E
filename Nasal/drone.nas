@@ -440,4 +440,4 @@ var safety_loop = func {
 
 setlistener("/sim/multiplay/chat-history", incoming_listener, 0, 0);
 setlistener("/controls/drone/damaged", check_aglias, 0, 0);
-safety_loop();
+#safety_loop(); #currently buggy
