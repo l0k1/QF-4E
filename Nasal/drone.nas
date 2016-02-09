@@ -275,8 +275,8 @@ var take_off = func {
 		return;
 	}
 	setprop("/autopilot/locks/heading","dg-heading-hold");
-	setprop("/controls/drone/autopilot/roll-minimum",-10);
-	setprop("/controls/drone/autopilot/roll-maximum",10);
+	setprop("/controls/drone/autopilot/roll-minimum",-8);
+	setprop("/controls/drone/autopilot/roll-maximum",8);
 	setprop("/controls/gear/brake-parking",0);
 	var agl = getprop("/position/altitude-agl-ft");
 	var ias = getprop("/velocities/airspeed-kt");
@@ -289,15 +289,15 @@ var take_off = func {
 	} elsif ( agl > 100 and stage == 1 ) {
 		#if agl is over 100 feet, we can set the climb rate to be more agressive
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",2);
-		setprop("/controls/drone/autopilot/min-climb-rate",-27);
-		setprop("/controls/drone/autopilot/max-climb-rate",27);
+		setprop("/controls/drone/autopilot/min-climb-rate",-15);
+		setprop("/controls/drone/autopilot/max-climb-rate",15);
 		setprop("/controls/gear/gear-down","false");
 		setprop("/sim/multiplay/chat","Drone at 100ft AGL, retracting wheels.")
 	} elsif ( agl > 500 and stage == 2 ) {
 		#once we hit 500 agl, set even more aggressive climb rate, and exit take_off function
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",0);
-		setprop("/controls/drone/autopilot/min-climb-rate",-35);
-		setprop("/controls/drone/autopilot/max-climb-rate",35);
+		setprop("/controls/drone/autopilot/min-climb-rate",-22);
+		setprop("/controls/drone/autopilot/max-climb-rate",22);
 		setprop("/controls/drone/autopilot/roll-minimum",-70);
 		setprop("/controls/drone/autopilot/roll-maximum",70);
 		setprop("/autopilot/locks/heading","dg-heading-hold");
