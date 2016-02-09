@@ -268,10 +268,12 @@ var take_off = func {
 		return;
 	}
 	setprop("/autopilot/locks/heading","takeoff");
+	setprop("/controls/drone/autopilot/roll-minimum",-10);
+	setprop("/controls/drone/autopilot/roll-maximum",10);
 	var agl = getprop("/position/altitude-agl-ft");
 	var ias = getprop("/velocities/airspeed-kt");
 	var stage = getprop("/controls/drone/takeoff-landing/takeoff-stage");
-	if ( ias > 200 and stage == 0 ) {
+	if ( ias > 170 and stage == 0 ) {
 		#if our speed is greater than 200, start to climb.
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",1);
 		setprop("/autopilot/settings/target-altitude-ft",getprop("/instrumentation/altimeter/indicated-altitude-ft") + 10000);
@@ -288,6 +290,8 @@ var take_off = func {
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",0);
 		setprop("/controls/drone/autopilot/min-climb-rate",-35);
 		setprop("/controls/drone/autopilot/max-climb-rate",35);
+		setprop("/controls/drone/autopilot/roll-minimum",-70);
+		setprop("/controls/drone/autopilot/roll-maximum",70);
 		setprop("/autopilot/locks/heading","dg-heading-hold");
 		setprop("/controls/drone/mode","free-flight");
 	    setprop("/autopilot/settings/heading-bug-deg",getprop("/orientation/heading-magnetic-deg"));
