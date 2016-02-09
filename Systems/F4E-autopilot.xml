@@ -76,8 +76,8 @@
                            <!-- unfiltered derivative error -->
       <Ti>2.1</Ti>        <!-- integrator time -->
       <Td>0.0003</Td>     <!-- derivator time -->
-      <u_min>-45.0</u_min> <!-- minimum output clamp -->
-      <u_max>45.0</u_max>  <!-- maximum output clamp -->
+      <u_min><prop>/controls/drone/autopilot/roll-minimum</prop></u_min> <!-- minimum output clamp -->
+      <u_max><prop>/controls/drone/autopilot/roll-maximum</prop></u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
 
@@ -325,8 +325,8 @@
     <config>
       <Kp>0.3</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
-      <u_min>-33.333</u_min> <!-- minimum output clamp -->
-      <u_max>27.2</u_max>   <!-- maximum output clamp -->
+      <u_min><prop>/controls/drone/autopilot/min-climb-rate</prop></u_min> <!-- minimum output clamp -->
+      <u_max><prop>/controls/drone/autopilot/max-climb-rate</prop></u_max>  <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
 
