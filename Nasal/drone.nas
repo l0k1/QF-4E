@@ -1,5 +1,9 @@
 # turns a fg plane into a drone that can be controlled via mp-chat
 
+####THOUGHTS
+#Decrease amount of elevators during phase 0/1 of takeoff for more control.
+#Decrease roll during takeoff
+
 var safety_loop_timer = 0.3;
 var agl_threshold = 2500;
 var stall_threshold = 225;
@@ -16,10 +20,10 @@ setprop("/controls/drone/pattern-dir","-1");
 setprop("/controls/drone/pattern-tightness",2); #1 = slow, 2 = normal, 3 = quick, 4 = supaquick!
 
 # autopilot init
-#setprop("/controls/drone/autopilot/roll-minimum",-80);
-#setprop("/controls/drone/autopilot/roll-maximum",80);
-#setprop("/controls/drone/autopilot/min-climb-rate",-45);
-#setprop("/controls/drone/autopilot/max-climb-rate",45);
+#setprop("/controls/drone/autopilot/roll-minimum",-70);
+#setprop("/controls/drone/autopilot/roll-maximum",70);
+#setprop("/controls/drone/autopilot/min-climb-rate",-35);
+#setprop("/controls/drone/autopilot/max-climb-rate",35);
 
 # takeoff stuff
 setprop("/controls/drone/takeoff-landing/takeoff-stage",0);
@@ -253,8 +257,8 @@ var take_off_init = func {
 	setprop("/autopilot/settings/target-altitude-ft",getprop("/instrumentation/altimeter/indicated-altitude-ft"));
 	setprop("/autopilot/settings/target-speed-kt",350);
 	setprop("/controls/drone/mode","takeoff");
-#	setprop("/controls/drone/autopilot/min-climb-rate",-15);
-#	setprop("/controls/drone/autopilot/max-climb-rate",15);
+	setprop("/controls/drone/autopilot/min-climb-rate",-10);
+	setprop("/controls/drone/autopilot/max-climb-rate",10);
 	take_off();
 }
 
@@ -274,15 +278,15 @@ var take_off = func {
 	} elsif ( agl > 100 and stage == 1 ) {
 		#if agl is over 100 feet, we can set the climb rate to be more agressive
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",2);
-#		setprop("/controls/drone/autopilot/min-climb-rate",-27);
-#		setprop("/controls/drone/autopilot/max-climb-rate",27);
+		setprop("/controls/drone/autopilot/min-climb-rate",-27);
+		setprop("/controls/drone/autopilot/max-climb-rate",27);
 		setprop("/controls/gear/gear-down","false");
 		setprop("/sim/multiplay/chat","Drone at 100ft AGL, retracting wheels.")
 	} elsif ( agl > 500 and stage == 2 ) {
 		#once we hit 500 agl, set even more aggressive climb rate, and exit take_off function
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",0);
-#		setprop("/controls/drone/autopilot/min-climb-rate",-45);
-#		setprop("/controls/drone/autopilot/max-climb-rate",45);
+		setprop("/controls/drone/autopilot/min-climb-rate",-35);
+		setprop("/controls/drone/autopilot/max-climb-rate",35);
 		setprop("/autopilot/locks/heading","dg-heading-hold");
 		setprop("/controls/drone/mode","free-flight");
 	    setprop("/autopilot/settings/heading-bug-deg",getprop("/orientation/heading-magnetic-deg"));
@@ -404,25 +408,27 @@ var safety_loop = func {
 	}
 	
 
-		if ( getprop("/position/altitude-agl-ft") < agl_threshold and getprop("/controls/drone/agl_safety") == "armed" ) {
-			var new_alt = getprop("/position/altitude-ft") + 5000;
-			setprop("/autopilot/settings/target-altitude-ft", new_alt );
-			setprop("/sim/multiplay/chat","Drone AGL minimum threshold reached, setting altitude to: " ~ int(new_alt));
-		} elsif ( getprop("/controls/drone/stall_safety") == "engaged" ) {
-			if ( getprop("/position/altitude-agl-ft") > agl_threshold + 500 ) {
-				setprop("/controls/drone/agl_safety","armed");
-			}
+	if ( getprop("/position/altitude-agl-ft") < agl_threshold and getprop("/controls/drone/agl_safety") == "armed" ) {
+		var new_alt = getprop("/position/altitude-ft") + 5000;
+		setprop("/autopilot/settings/target-altitude-ft", new_alt );
+		setprop("/sim/multiplay/chat","Drone AGL minimum threshold reached, setting altitude to: " ~ int(new_alt));
+	} elsif ( getprop("/controls/drone/stall_safety") == "engaged" ) {
+		if ( getprop("/position/altitude-agl-ft") > agl_threshold + 500 ) {
+			setprop("/controls/drone/agl_safety","armed");
 		}
-		
-		if ( getprop("/velocities/airspeed-kt") < stall_threshold and getprop("/controls/drone/stall_safety") == "armed" ) {
-			var new_speed = (stall_threshold - getprop("/velocities/airspeed-kt")) + getprop("velocities/airspeed-kt") + 25;
-			setprop("/autopilot/settings/target-speed-kt",new_speed);
-			setprop("/sim/multiplay/chat","Drone KIAS minimum threshold reached, setting speed to: " ~ int(new_speed));
-		} elsif ( getprop("/controls/drone/agl_safety") == "engaged" ) {
-			if ( getprop("/velocities/airspeed-kt") > stall_threshold + 25 ) {
-				setprop("/controls/drone/stall_safety","armed");
-			}
+	}
+	
+	if ( getprop("/velocities/airspeed-kt") < stall_threshold and getprop("/controls/drone/stall_safety") == "armed" ) {
+		var new_speed = (stall_threshold - getprop("/velocities/airspeed-kt")) + getprop("velocities/airspeed-kt") + 25;
+		setprop("/autopilot/settings/target-speed-kt",new_speed);
+		setprop("/sim/multiplay/chat","Drone KIAS minimum threshold reached, setting speed to: " ~ int(new_speed));
+	} elsif ( getprop("/controls/drone/agl_safety") == "engaged" ) {
+		if ( getprop("/velocities/airspeed-kt") > stall_threshold + 25 ) {
+			setprop("/controls/drone/stall_safety","armed");
 		}
+	}
+	
+	settimer( safety_loop, safety_loop_timer );
 }
 
 ###################################################
@@ -431,3 +437,4 @@ var safety_loop = func {
 
 setlistener("/sim/multiplay/chat-history", incoming_listener, 0, 0);
 setlistener("/controls/drone/damaged", check_aglias, 0, 0);
+safety_loop();
