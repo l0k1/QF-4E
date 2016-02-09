@@ -404,7 +404,7 @@ var evade = func {
 var safety_loop = func {
 
 	#first check if safeties are necessary - if agl > 300 and we aren't taking off.
-	if ( getprop("/controls/drone/enable") == 0 or getprop("/controls/drone/mode") == "takeoff" or getprop("/position/altitude-agl-ft") > 250) {
+	if ( getprop("/controls/drone/enable") == 0 or getprop("/controls/drone/mode") == "takeoff" or getprop("/position/altitude-agl-ft") < 250) {
 		return;
 	}
 	
