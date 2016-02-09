@@ -9,6 +9,7 @@ var agl_threshold = 2500;
 var stall_threshold = 225;
 
 var last_comm_time = systime();
+setprop("/controls/drone/owner","0");
 setprop("/controls/drone/owner","");
 setprop("/controls/drone/mode","free-flight");
 setprop("/controls/drone/stall_safety","armed");
@@ -20,10 +21,10 @@ setprop("/controls/drone/pattern-dir","-1");
 setprop("/controls/drone/pattern-tightness",2); #1 = slow, 2 = normal, 3 = quick, 4 = supaquick!
 
 # autopilot init
-#setprop("/controls/drone/autopilot/roll-minimum",-70);
-#setprop("/controls/drone/autopilot/roll-maximum",70);
-#setprop("/controls/drone/autopilot/min-climb-rate",-35);
-#setprop("/controls/drone/autopilot/max-climb-rate",35);
+setprop("/controls/drone/autopilot/roll-minimum",-70);
+setprop("/controls/drone/autopilot/roll-maximum",70);
+setprop("/controls/drone/autopilot/min-climb-rate",-35);
+setprop("/controls/drone/autopilot/max-climb-rate",35);
 
 # takeoff stuff
 setprop("/controls/drone/takeoff-landing/takeoff-stage",0);
@@ -422,7 +423,7 @@ var safety_loop = func {
 	if ( getprop("/velocities/airspeed-kt") < stall_threshold and getprop("/controls/drone/stall_safety") == "armed" ) {
 		var new_speed = (stall_threshold - getprop("/velocities/airspeed-kt")) + getprop("velocities/airspeed-kt") + 25;
 		setprop("/autopilot/settings/target-speed-kt",new_speed);
-		setprop("/controls/drone/syall_safety", "engaged");
+		setprop("/controls/drone/stall_safety", "engaged");
 		setprop("/sim/multiplay/chat","Drone KIAS minimum threshold reached, setting speed to: " ~ int(new_speed));
 	} elsif ( getprop("/controls/drone/agl_safety") == "engaged" ) {
 		if ( getprop("/velocities/airspeed-kt") > stall_threshold + 25 ) {
