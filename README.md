@@ -79,6 +79,11 @@ Deploy landing gears.
 Retract landing gears.
 
 
+[drone] brakes on | off
+
+Turn on or off the parking brakes.
+
+
 [drone] fly to [ICAO]
 
 Flies the drone to the specified airport. When reached, the drone will fly in a circle pattern.

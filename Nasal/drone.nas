@@ -19,6 +19,7 @@ setprop("/controls/drone/damage-enabled",0);
 setprop("/controls/drone/pattern",0);
 setprop("/controls/drone/pattern-dir","-1");
 setprop("/controls/drone/pattern-tightness",2); #1 = slow, 2 = normal, 3 = quick, 4 = supaquick!
+setprop("/controls/gear/brake-parking",1);
 
 # autopilot init
 setprop("/controls/drone/autopilot/roll-minimum",-70);
@@ -119,6 +120,12 @@ var incoming_listener = func {
 					} elsif ( last_vector[2] == "gear" and last_vector[3] == "retract" ) {
 						setprop("/controls/gear/gear-down","false");
 						setprop("/sim/multiplay/chat", "Drone gear retracted");
+					} elsif ( last_vector[2] == "brakes" and last_vector[3] == "on" ) {
+						setprop("/controls/gear/brake-parking",1);
+						setprop("/sim/multiplay/chat", "Drone brakes on");
+					} elsif ( last_vector[2] == "brakes" and last_vector[3] == "off" ) {
+						setprop("/controls/gear/brake-parking",0);
+						setprop("/sim/multiplay/chat", "Drone brakes off");
 					} elsif ( last_vector[2] == "repair" ) {
 						repair_damage();
 						
@@ -270,6 +277,7 @@ var take_off = func {
 	setprop("/autopilot/locks/heading","dg-heading-hold");
 	setprop("/controls/drone/autopilot/roll-minimum",-10);
 	setprop("/controls/drone/autopilot/roll-maximum",10);
+	setprop("/controls/gear/brake-parking",0);
 	var agl = getprop("/position/altitude-agl-ft");
 	var ias = getprop("/velocities/airspeed-kt");
 	var stage = getprop("/controls/drone/takeoff-landing/takeoff-stage");
