@@ -403,7 +403,7 @@ var evade = func {
 var safety_loop = func {
 
 	#first check if safeties are necessary - if agl > 300 and we aren't taking off.
-	if ( getprop("/controls/drone/mode") == "takeoff" or getprop("/position/altitude-agl-ft") > 250) {
+	if ( getprop("/controls/drone/enable") == 0 or getprop("/controls/drone/mode") == "takeoff" or getprop("/position/altitude-agl-ft") > 250) {
 		return;
 	}
 	
@@ -411,6 +411,7 @@ var safety_loop = func {
 	if ( getprop("/position/altitude-agl-ft") < agl_threshold and getprop("/controls/drone/agl_safety") == "armed" ) {
 		var new_alt = getprop("/position/altitude-ft") + 5000;
 		setprop("/autopilot/settings/target-altitude-ft", new_alt );
+		setprop("/controls/drone/agl_safety", "engaged");
 		setprop("/sim/multiplay/chat","Drone AGL minimum threshold reached, setting altitude to: " ~ int(new_alt));
 	} elsif ( getprop("/controls/drone/stall_safety") == "engaged" ) {
 		if ( getprop("/position/altitude-agl-ft") > agl_threshold + 500 ) {
@@ -421,6 +422,7 @@ var safety_loop = func {
 	if ( getprop("/velocities/airspeed-kt") < stall_threshold and getprop("/controls/drone/stall_safety") == "armed" ) {
 		var new_speed = (stall_threshold - getprop("/velocities/airspeed-kt")) + getprop("velocities/airspeed-kt") + 25;
 		setprop("/autopilot/settings/target-speed-kt",new_speed);
+		setprop("/controls/drone/syall_safety", "engaged");
 		setprop("/sim/multiplay/chat","Drone KIAS minimum threshold reached, setting speed to: " ~ int(new_speed));
 	} elsif ( getprop("/controls/drone/agl_safety") == "engaged" ) {
 		if ( getprop("/velocities/airspeed-kt") > stall_threshold + 25 ) {
