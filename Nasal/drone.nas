@@ -9,7 +9,7 @@ var agl_threshold = 2500;
 var stall_threshold = 225;
 
 var last_comm_time = systime();
-setprop("/controls/drone/owner","0");
+setprop("/controls/drone/enable","0");
 setprop("/controls/drone/owner","");
 setprop("/controls/drone/mode","free-flight");
 setprop("/controls/drone/stall_safety","armed");
@@ -22,8 +22,8 @@ setprop("/controls/drone/pattern-tightness",2); #1 = slow, 2 = normal, 3 = quick
 setprop("/controls/gear/brake-parking",1);
 
 # autopilot init
-setprop("/controls/drone/autopilot/roll-minimum",-70);
-setprop("/controls/drone/autopilot/roll-maximum",70);
+setprop("/controls/drone/autopilot/roll-minimum",-55);
+setprop("/controls/drone/autopilot/roll-maximum",55);
 setprop("/controls/drone/autopilot/min-climb-rate",-35);
 setprop("/controls/drone/autopilot/max-climb-rate",35);
 
@@ -158,7 +158,7 @@ var incoming_listener = func {
 						fly_pattern();
 					} elsif ( last_vector[2] == "pattern" and last_vector[3] == "circle" ){
 						setprop("/controls/drone/mode","pattern");
-						setprop("/controls/drone/pattern",64);
+						setprop("/controls/drone/pattern",512);
 						setprop("/sim/multiplay/chat", "Drone flying circle pattern");
 						fly_pattern();
 					} elsif (last_vector[2] == "pattern" and last_vector[3] == "turn" and last_vector[4] == "left" ){
