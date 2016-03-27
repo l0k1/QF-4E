@@ -274,7 +274,7 @@ var take_off = func {
 	if ( getprop("/controls/drone/mode") != "takeoff" ) {
 		return;
 	}
-	setprop("/autopilot/locks/heading","dg-heading-hold");
+	setprop("/autopilot/locks/heading","takeoff-heading-hold");
 	setprop("/controls/drone/autopilot/roll-minimum",-8);
 	setprop("/controls/drone/autopilot/roll-maximum",8);
 	setprop("/controls/gear/brake-parking",0);
@@ -285,7 +285,10 @@ var take_off = func {
 		#if our speed is greater than 200, start to climb.
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",1);
 		setprop("/autopilot/settings/target-altitude-ft",getprop("/instrumentation/altimeter/indicated-altitude-ft") + 10000);
-		setprop("/sim/multiplay/chat","Drone at V2, beginning climb.")
+		setprop("/controls/drone/autopilot/min-climb-rate",-55);
+		setprop("/controls/drone/autopilot/max-climb-rate",55);
+		setprop("/sim/multiplay/chat","Drone at V2, beginning climb.");
+		setprop("/autopilot/locks/heading","dg-heading-hold");
 	} elsif ( agl > 100 and stage == 1 ) {
 		#if agl is over 100 feet, we can set the climb rate to be more agressive
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",2);
