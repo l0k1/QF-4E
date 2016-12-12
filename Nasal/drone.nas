@@ -258,8 +258,6 @@ var take_off_init = func {
 	setprop("/autopilot/settings/target-altitude-ft",getprop("/instrumentation/altimeter/indicated-altitude-ft"));
 	setprop("/autopilot/settings/target-speed-kt",350);
 	setprop("/controls/drone/mode","takeoff");
-	setprop("/controls/drone/autopilot/min-climb-rate",-10);
-	setprop("/controls/drone/autopilot/max-climb-rate",10);
 	take_off();
 }
 
@@ -351,8 +349,6 @@ var check_aglias = func {
 		var new_alt = getprop("/position/altitude-ft") + 5000;
 		setprop("/autopilot/settings/target-altitude-ft", new_alt);
 		setprop("/autopilot/settings/target-speed-kt",350);
-#		setprop("/controls/drone/autopilot/min-climb-rate",-8);
-#		setprop("/controls/drone/autopilot/max-climb-rate",8);
 		setprop("/sim/multiplay/chat","Drone damage repaired, minimum speed/AGL threshold reached, attempting to save self.");
 	} elsif ( getprop("/controls/drone/damaged") == "true" ) {
 		settimer(check_aglias,.5);
