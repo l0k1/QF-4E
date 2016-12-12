@@ -4,12 +4,11 @@
 #Decrease amount of elevators during phase 0/1 of takeoff for more control.
 #Decrease roll during takeoff
 
-var safety_loop_timer = 0.3;
 var agl_threshold = 2500;
 var stall_threshold = 225;
 
 var last_comm_time = systime();
-setprop("/controls/drone/enable","0");
+setprop("/controls/drone/enable",0);
 setprop("/controls/drone/owner","");
 setprop("/controls/drone/mode","free-flight");
 setprop("/controls/drone/stall_safety","armed");
@@ -20,12 +19,6 @@ setprop("/controls/drone/pattern",0);
 setprop("/controls/drone/pattern-dir","-1");
 setprop("/controls/drone/pattern-tightness",2); #1 = slow, 2 = normal, 3 = quick, 4 = supaquick!
 setprop("/controls/gear/brake-parking",1);
-
-# autopilot init
-setprop("/controls/drone/autopilot/roll-minimum",-55);
-setprop("/controls/drone/autopilot/roll-maximum",55);
-setprop("/controls/drone/autopilot/min-climb-rate",-35);
-setprop("/controls/drone/autopilot/max-climb-rate",35);
 
 # takeoff stuff
 setprop("/controls/drone/takeoff-landing/takeoff-stage",0);
@@ -284,25 +277,20 @@ var take_off = func {
 	if ( ias > 185 and stage == 0 ) {
 		#if our speed is greater than 200, start to climb.
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",1);
+		setprop("/autopilot/locks/altitude","pitch-hold");
 		setprop("/autopilot/settings/target-altitude-ft",getprop("/instrumentation/altimeter/indicated-altitude-ft") + 10000);
-		setprop("/controls/drone/autopilot/min-climb-rate",-55);
-		setprop("/controls/drone/autopilot/max-climb-rate",55);
+		setprop("/autopilot/settings/target-pitch-deg",12);
 		setprop("/sim/multiplay/chat","Drone at V2, beginning climb.");
 		setprop("/autopilot/locks/heading","dg-heading-hold");
 	} elsif ( agl > 100 and stage == 1 ) {
 		#if agl is over 100 feet, we can set the climb rate to be more agressive
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",2);
-		setprop("/controls/drone/autopilot/min-climb-rate",-15);
-		setprop("/controls/drone/autopilot/max-climb-rate",15);
+		setprop("/autopilot/locks/altitude","altitude-hold");
 		setprop("/controls/gear/gear-down","false");
 		setprop("/sim/multiplay/chat","Drone at 100ft AGL, retracting wheels.")
 	} elsif ( agl > 500 and stage == 2 ) {
 		#once we hit 500 agl, set even more aggressive climb rate, and exit take_off function
 		setprop("/controls/drone/takeoff-landing/takeoff-stage",0);
-		setprop("/controls/drone/autopilot/min-climb-rate",-22);
-		setprop("/controls/drone/autopilot/max-climb-rate",22);
-		setprop("/controls/drone/autopilot/roll-minimum",-70);
-		setprop("/controls/drone/autopilot/roll-maximum",70);
 		setprop("/autopilot/locks/heading","dg-heading-hold");
 		setprop("/controls/drone/mode","free-flight");
 	    setprop("/autopilot/settings/heading-bug-deg",getprop("/orientation/heading-magnetic-deg"));
@@ -450,9 +438,50 @@ var safety_loop = func {
 }
 
 ###################################################
+#####FCS CONTROL
+###################################################
+
+var fcs_control = func() {
+	#simple fcs thingies based on ias
+	
+	#settings for easier changing
+	
+	var my_speed = getprop("/velocities/airspeed-kt");
+	
+	#roll
+	var min_roll = 30;
+	var min_roll_speed = 300;
+	var max_roll = 70;
+	var max_roll_speed = 600;
+	
+	#climb
+	var min_climb_rate = 15;
+	var min_climb_rate_speed = 250;
+	var max_climb_rate = 55;
+	var max_climb_rate_speed = 600;
+	
+	#set max roll degrees
+	#uses 2d interpolation formula
+	var roll_deg = min_roll + (my_speed - min_roll_speed) * (max_roll - min_roll) / (max_roll_speed - min_roll_speed);
+	roll_deg = math.clamp( roll_deg, min_roll, max_roll );
+	setprop("/controls/drone/autopilot/roll-minimum",-roll_deg);
+	setprop("/controls/drone/autopilot/roll-maximum",roll_deg);
+	
+	
+	#set climb rate
+	var climb_rate = min_climb_rate + (my_speed - min_climb_rate_speed) * (max_climb_rate - min_climb_rate) / (max_climb_rate_speed - min_climb_rate_speed);
+	climb_rate = math.clamp( climb_rate, min_climb_rate, max_climb_rate);
+	setprop("/controls/drone/autopilot/min-climb-rate",-climb_rate);
+	setprop("/controls/drone/autopilot/max-climb-rate",climb_rate);
+	
+	settimer( func() { fcs_control(); }, 1);
+}
+
+###################################################
 #####INITIALIZATION
 ###################################################
 
 setlistener("/sim/multiplay/chat-history", incoming_listener, 0, 0);
 setlistener("/controls/drone/damaged", check_aglias, 0, 0);
 #safety_loop(); #currently buggy
+fcs_control();
