@@ -451,15 +451,18 @@ var fcs_control = func() {
 	var max_roll_speed = 600;
 	
 	#climb
-	var min_climb_rate = 15;
-	var min_climb_rate_speed = 250;
-	var max_climb_rate = 55;
+	var min_climb_rate = 25;
+	var min_climb_rate_speed = 225;
+	var max_climb_rate = 65;
 	var max_climb_rate_speed = 600;
 	
 	#set max roll degrees
 	#uses 2d interpolation formula
 	var roll_deg = min_roll + (my_speed - min_roll_speed) * (max_roll - min_roll) / (max_roll_speed - min_roll_speed);
 	roll_deg = math.clamp( roll_deg, min_roll, max_roll );
+	print("calced r_deg: " ~ roll_deg);
+	print("my speed: " ~ my_speed);
+	
 	setprop("/controls/drone/autopilot/roll-minimum",-roll_deg);
 	setprop("/controls/drone/autopilot/roll-maximum",roll_deg);
 	
@@ -469,6 +472,8 @@ var fcs_control = func() {
 	climb_rate = math.clamp( climb_rate, min_climb_rate, max_climb_rate);
 	setprop("/controls/drone/autopilot/min-climb-rate",-climb_rate);
 	setprop("/controls/drone/autopilot/max-climb-rate",climb_rate);
+	print("calced c_r: " ~ climb_rate);
+	
 	
 	settimer( func() { fcs_control(); }, 1);
 }

@@ -69,169 +69,168 @@ var warhead_lbs = {
 };
 
 var incoming_listener = func {
-  var history = getprop("/sim/multiplay/chat-history");
-  var hist_vector = split("\n", history);
-  if (size(hist_vector) > 0) {
-    var last = hist_vector[size(hist_vector)-1];
-    var last_vector = split(":", last);
-    var author = last_vector[0];
-    var callsign = getprop("sim/multiplay/callsign");
-    if (size(last_vector) > 1 and author != callsign) {
-      # not myself
-      #print("not me");
-      var m2000 = FALSE;
-      if (find(" at " ~ callsign ~ ". Release ", last_vector[1]) != -1) {
-        # a m2000 is firing at us
-        m2000 = TRUE;
-      }
-      if (last_vector[1] == " FOX2 at" or last_vector[1] == " Fox 1 at" or last_vector[1] == " Fox 2 at" or last_vector[1] == " Fox 3 at"
-          or last_vector[1] == " Greyhound at" or last_vector[1] == " Bombs away at" or last_vector[1] == " Bruiser at" or last_vector[1] == " Rifle at" or last_vector[1] == " Bird away at"
-          or last_vector[1] == " aim7 at" or last_vector[1] == " aim9 at"
-          or last_vector[1] == " aim120 at"
-          or m2000 == TRUE) {
-        # air2air being fired
-        if (size(last_vector) > 2 or m2000 == TRUE) {
-          #print("Missile launch detected at"~last_vector[2]~" from "~author);
-          if (m2000 == TRUE or last_vector[2] == " "~callsign) {
-            # its being fired at me
-            #print("Incoming!");
-            var enemy = getCallsign(author);
-            if (enemy != nil) {
-              #print("enemy identified");
-              var bearingNode = enemy.getNode("radar/bearing-deg");
-              if (bearingNode != nil) {
-                #print("bearing to enemy found");
-                var bearing = bearingNode.getValue();
-                var heading = getprop("orientation/heading-deg");
-                var clock = bearing - heading;
-                while(clock < 0) {
-                  clock = clock + 360;
-                }
-                while(clock > 360) {
-                  clock = clock - 360;
-                }
-                #print("incoming from "~clock);
-                if (clock >= 345 or clock < 15) {
-                  playIncomingSound("12");
-                } elsif (clock >= 15 and clock < 45) {
-                  playIncomingSound("1");
-                } elsif (clock >= 45 and clock < 75) {
-                  playIncomingSound("2");
-                } elsif (clock >= 75 and clock < 105) {
-                  playIncomingSound("3");
-                } elsif (clock >= 105 and clock < 135) {
-                  playIncomingSound("4");
-                } elsif (clock >= 135 and clock < 165) {
-                  playIncomingSound("5");
-                } elsif (clock >= 165 and clock < 195) {
-                  playIncomingSound("6");
-                } elsif (clock >= 195 and clock < 225) {
-                  playIncomingSound("7");
-                } elsif (clock >= 225 and clock < 255) {
-                  playIncomingSound("8");
-                } elsif (clock >= 255 and clock < 285) {
-                  playIncomingSound("9");
-                } elsif (clock >= 285 and clock < 315) {
-                  playIncomingSound("10");
-                } elsif (clock >= 315 and clock < 345) {
-                  playIncomingSound("11");
-                } else {
-                  playIncomingSound("");
-                }
-                return;
-              }
-            }
-          }
-        }
-      } elsif (1==1) { # mirage: getprop("/controls/armament/mp-messaging")
-        # latest version of failure manager and taking damage enabled
-        #print("damage enabled");
-        var last1 = split(" ", last_vector[1]);
-        if(size(last1) > 2 and last1[size(last1)-1] == "exploded" ) {
-          #print("missile hitting someone");
-          if (size(last_vector) > 3 and last_vector[3] == " "~callsign) {
-            #print("that someone is me!");
-            var type = last1[1];
-            if (type == "Matra" or type == "Sea") {
-              for (var i = 2; i < size(last1)-1; i += 1) {
-                type = type~" "~last1[i];
-              }
-            }
-            var number = split(" ", last_vector[2]);
-            var distance = num(number[1]);
-            #print(type~"|");
-            if(distance != nil) {
-              var dist = distance;
+	var history = getprop("/sim/multiplay/chat-history");
+	var hist_vector = split("\n", history);
+	if (size(hist_vector) > 0) {
+		var last = hist_vector[size(hist_vector)-1];
+		var last_vector = split(":", last);
+		var author = last_vector[0];
+		var callsign = getprop("sim/multiplay/callsign");
+		if (size(last_vector) > 1 and author != callsign) {
+			# not myself
+			#print("not me");
+			var m2000 = FALSE;
+			if (find(" at " ~ callsign ~ ". Release ", last_vector[1]) != -1) {
+				# a m2000 is firing at us
+				m2000 = TRUE;
+			}
+			if (last_vector[1] == " FOX2 at" or last_vector[1] == " Fox 1 at" or last_vector[1] == " Fox 2 at" or last_vector[1] == " Fox 3 at"
+			or last_vector[1] == " Greyhound at" or last_vector[1] == " Bombs away at" or last_vector[1] == " Bruiser at" or last_vector[1] == " Rifle at" or last_vector[1] == " Bird away at"
+			or last_vector[1] == " aim7 at" or last_vector[1] == " aim9 at"
+			or last_vector[1] == " aim120 at"
+			or m2000 == TRUE) {
+			# air2air being fired
+				if (size(last_vector) > 2 or m2000 == TRUE) {
+					#print("Missile launch detected at"~last_vector[2]~" from "~author);
+					if (m2000 == TRUE or last_vector[2] == " "~callsign) {
+						# its being fired at me
+						#print("Incoming!");
+						var enemy = getCallsign(author);
+						if (enemy != nil) {
+							#print("enemy identified");
+							var bearingNode = enemy.getNode("radar/bearing-deg");
+							if (bearingNode != nil) {
+								#print("bearing to enemy found");
+								var bearing = bearingNode.getValue();
+								var heading = getprop("orientation/heading-deg");
+								var clock = bearing - heading;
+								while(clock < 0) {
+									clock = clock + 360;
+								}
+								while(clock > 360) {
+									clock = clock - 360;
+								}
+								#print("incoming from "~clock);
+								if (clock >= 345 or clock < 15) {
+									playIncomingSound("12");
+								} elsif (clock >= 15 and clock < 45) {
+									playIncomingSound("1");
+								} elsif (clock >= 45 and clock < 75) {
+									playIncomingSound("2");
+								} elsif (clock >= 75 and clock < 105) {
+									playIncomingSound("3");
+								} elsif (clock >= 105 and clock < 135) {
+									playIncomingSound("4");
+								} elsif (clock >= 135 and clock < 165) {
+									playIncomingSound("5");
+								} elsif (clock >= 165 and clock < 195) {
+									playIncomingSound("6");
+								} elsif (clock >= 195 and clock < 225) {
+									playIncomingSound("7");
+								} elsif (clock >= 225 and clock < 255) {
+									playIncomingSound("8");
+								} elsif (clock >= 255 and clock < 285) {
+									playIncomingSound("9");
+								} elsif (clock >= 285 and clock < 315) {
+									playIncomingSound("10");
+								} elsif (clock >= 315 and clock < 345) {
+									playIncomingSound("11");
+								} else {
+									playIncomingSound("");
+								}
+									return;
+							}
+						}
+					}
+				}
+			} elsif (1==1) { # mirage: getprop("/controls/armament/mp-messaging")
+				# latest version of failure manager and taking damage enabled
+				#print("damage enabled");
+				var last1 = split(" ", last_vector[1]);
+				if(size(last1) > 2 and last1[size(last1)-1] == "exploded" ) {
+					#print("missile hitting someone");
+					if (size(last_vector) > 3 and last_vector[3] == " "~callsign) {
+						#print("that someone is me!");
+						var type = last1[1];
+						if (type == "Matra" or type == "Sea") {
+							for (var i = 2; i < size(last1)-1; i += 1) {
+								type = type~" "~last1[i];
+							}
+						}
+						var number = split(" ", last_vector[2]);
+						var distance = num(number[1]);
+						#print(type~"|");
+						if(distance != nil) {
+							var dist = distance;
 
-              if (type == "M90") {
-                var prob = rand()*0.5;
-                var failed = fail_systems(prob);
-                var percent = 100 * prob;
-                printf("Took %.1f%% damage from %s clusterbombs at %0.1f meters. %s systems was hit", percent,type,dist,failed);
-				var message = "Took "~ int(percent) ~"% damage from "~type~" missile at "~ int(distance) ~" meters distance! "~failed~" systems was hit.";
-              if ( getprop("controls/drone/damage-enabled") == 0 ) {
-                message = "DAMAGE DISABLED: " ~ message;
-              } else {
-                message = "DAMAGE ENABLED: " ~ message;
-                setprop("/controls/drone/damaged","true");
-              }
-              setprop("sim/multiplay/chat", message);
-            }
-                nearby_explosion();
-                return;
-              }
+							if (type == "M90") {
+								var prob = rand()*0.5;
+								var failed = fail_systems(prob);
+								var percent = 100 * prob;
+								printf("Took %.1f%% damage from %s clusterbombs at %0.1f meters. %s systems was hit", percent,type,dist,failed);
+								var message = "Took "~ int(percent) ~"% damage from "~type~" missile at "~ int(distance) ~" meters distance! "~failed~" systems was hit.";
+								if ( getprop("controls/drone/damage-enabled") == 0 ) {
+									message = "DAMAGE DISABLED: " ~ message;
+								} else {
+									message = "DAMAGE ENABLED: " ~ message;
+									setprop("/controls/drone/damaged","true");
+								}
+								setprop("sim/multiplay/chat", message);
+							}
+							nearby_explosion();
+							return;
+						}
 
-              distance = clamp(distance-3, 0, 1000000);
-              var maxDist = 0;
+						distance = clamp(distance-3, 0, 1000000);
+						var maxDist = 0;
 
-              if (contains(warhead_lbs, type)) {
-                maxDist = maxDamageDistFromWarhead(warhead_lbs[type]);
-              } else {
-                return;
-              }
+						if (contains(warhead_lbs, type)) {
+							maxDist = maxDamageDistFromWarhead(warhead_lbs[type]);
+						} else {
+							return;
+						}
 
-              var diff = maxDist-distance;
-              if (diff < 0) {
-                diff = 0;
-              }
-              
-              diff = diff * diff;
-              
-              var probability = diff / (maxDist*maxDist);
+						var diff = maxDist-distance;
+						if (diff < 0) {
+							diff = 0;
+						}
 
-              var failed = fail_systems(probability);
-              var percent = 100 * probability;
-              printf("Took %.1f%% damage from %s missile at %0.1f meters. %s systems was hit", percent,type,dist,failed);
-			  var message = "Took "~ int(percent) ~"% damage from "~type~" missile at "~ int(distance) ~" meters distance! "~failed~" systems was hit.";
-              if ( getprop("controls/drone/damage-enabled") == 0 ) {
-                message = "DAMAGE DISABLED: " ~ message;
-              } else {
-                message = "DAMAGE ENABLED: " ~ message;
-                setprop("/controls/drone/damaged","true");
-              }
-              setprop("sim/multiplay/chat", message);
-            }
-              nearby_explosion();
-            }
-          } 
-        }elsif (cannon_types[last_vector[1]] != nil) {          # cannon hitting someone
-          #print("cannon");
-          if (size(last_vector) > 2 and last_vector[2] == " "~callsign) {
-            # that someone is me!
-            #print("hitting me");
+						diff = diff * diff;
 
-            var probability = cannon_types[last_vector[1]];
-            #print("probability: " ~ probability);
-            
-            var failed = fail_systems(probability);
-            printf("Took %.1f%% damage from cannon! %s systems was hit.", probability*100, failed);
-            nearby_explosion();
-          }
-        }
-      }
-    }
-  }
+						var probability = diff / (maxDist*maxDist);
+
+						var failed = fail_systems(probability);
+						var percent = 100 * probability;
+						printf("Took %.1f%% damage from %s missile at %0.1f meters. %s systems was hit", percent,type,dist,failed);
+						var message = "Took "~ int(percent) ~"% damage from "~type~" missile at "~ int(distance) ~" meters distance! "~failed~" systems was hit.";
+						if ( getprop("controls/drone/damage-enabled") == 0 ) {
+							message = "DAMAGE DISABLED: " ~ message;
+						} else {
+							message = "DAMAGE ENABLED: " ~ message;
+							setprop("/controls/drone/damaged","true");
+						}
+						setprop("sim/multiplay/chat", message);
+					}
+					nearby_explosion();
+				}
+			}
+		}elsif (cannon_types[last_vector[1]] != nil) {          # cannon hitting someone
+			#print("cannon");
+			if (size(last_vector) > 2 and last_vector[2] == " "~callsign) {
+				# that someone is me!
+				#print("hitting me");
+
+				var probability = cannon_types[last_vector[1]];
+				#print("probability: " ~ probability);
+
+				var failed = fail_systems(probability);
+				printf("Took %.1f%% damage from cannon! %s systems was hit.", probability*100, failed);
+				nearby_explosion();
+			}
+		}
+	}
 }
+
 
 var maxDamageDistFromWarhead = func (lbs) {
   # very simple
