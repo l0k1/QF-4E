@@ -40,23 +40,5 @@
 <PropertyList>
 
 	<!-- Drag Chute -->
-	<submodel>
-		<name>Braking Parachute</name>
-		<model>Aircraft/QF-4E/Models/drag-chute/chute.ac</model>
-		<trigger>controls/flight/drag-chute-jettison</trigger>
-		<speed>0</speed>
-		<repeat>false</repeat>
-		<count>1</count>
-		<x-offset>19</x-offset>
-		<y-offset>0</y-offset>
-		<z-offset>-0.675</z-offset>
-		<yaw-offset>0</yaw-offset>
-		<pitch-offset>0</pitch-offset>
-		<buoyancy>32</buoyancy>
-		<wind>true</wind>
-		<!-- pure guesswork from here on :-( -->
-		<!--cd>1.5</cd-->
-		<eda>250</eda>
-		<weight>50</weight>
-	</submodel>
+
 </PropertyList>
