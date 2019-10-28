@@ -80,6 +80,46 @@ Ronald Jensen,  pilot@jentronics.com
                 <enabled type="bool" userarchive="y">false</enabled>
             </dynamic>
         </view>
+        <menubar>
+            <default>
+        <menu n="100">
+                <label>GCI</label>
+                <enabled type="bool">true</enabled>
+                <item>
+                    <label>Picture</label>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/instrumentation/gci/picture</property>
+                        <value>1</value>
+                    </binding>
+                </item>
+                <item>
+                    <label>Bogey Dope</label>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/instrumentation/gci/bogeydope</property>
+                        <value>1</value>
+                    </binding>
+                </item>
+                <item>
+                    <label>Cutoff</label>
+                    <binding>
+                        <command>property-assign</command>
+                        <property>/instrumentation/gci/cutoff</property>
+                        <value>1</value>
+                    </binding>
+                </item>
+        </menu>
+            </default>
+
+        </menubar>
+        <multiplay>
+            <generic>
+                <bool n="0" alias ="/instrumentation/gci/picture"/> <!-- gci request -->
+                <bool n="1" alias ="/instrumentation/gci/bogeydope"/> <!-- gci request -->
+                <bool n="2" alias ="/instrumentation/gci/cutoff"/> <!-- gci request -->
+            </generic>
+        </multiplay>
         
         <chase-distance-m>-40</chase-distance-m>
         
@@ -116,6 +156,7 @@ Ronald Jensen,  pilot@jentronics.com
     <nasal>
         <drone>         <file>Aircraft/QF-4E/Nasal/drone.nas</file>             </drone>
         <damage>        <file>Aircraft/QF-4E/Nasal/damage.nas</file>            </damage>
+        <gci>           <file>Aircraft/QF-4E/Nasal/gci-listener.nas</file>      </gci>
     </nasal>
     
     <input>
