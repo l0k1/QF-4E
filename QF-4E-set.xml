@@ -157,6 +157,7 @@ Ronald Jensen,  pilot@jentronics.com
         <drone>         <file>Aircraft/QF-4E/Nasal/drone.nas</file>             </drone>
         <damage>        <file>Aircraft/QF-4E/Nasal/damage.nas</file>            </damage>
         <gci>           <file>Aircraft/QF-4E/Nasal/gci-listener.nas</file>      </gci>
+        <iff>           <file>Aircraft/QF-4E/Nasal/iff.nas</file>      </iff>
     </nasal>
     
     <input>
