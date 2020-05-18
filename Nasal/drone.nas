@@ -185,6 +185,11 @@ var incoming_listener = func {
                         setprop("/sim/multiplay/chat", "Drone performing evasive maneouvers.");
                         setprop("/controls/drone/mode","evade");
                         evade();
+
+                    } elsif (last_vector[2] == "bfm 0"){
+                        setprop("/sim/multiplay/chat", "Drone performing BFM training level 0.");
+                        setprop("/controls/drone/mode","bfm 0");
+                        bfm_0();
                         
                     #### DRONE REPORT    
                     
@@ -394,6 +399,24 @@ var evade = func {
     var evade_timer = ( rand() * 30 ) + 15;
 
     settimer( evade, evade_timer );
+}
+
+
+var bfm_0 = func {
+    if ( getprop("/controls/drone/mode") != "bfm 0" ) {
+        return;
+    } 
+
+    var new_heading = getprop("/autopilot/settings/heading-bug-deg") + (int(rand() * 360));
+    if ( new_heading > 360 ) {
+        new_heading = new_heading - 360;
+    }
+
+    setprop("/autopilot/settings/heading-bug-deg",new_heading);
+
+    var bfm_0_timer = ( rand() * 30 ) + 15;
+
+    settimer( bfm_0, bfm_0_timer );
 }
 
 ###################################################
