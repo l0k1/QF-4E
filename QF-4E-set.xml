@@ -81,7 +81,7 @@ Ronald Jensen,  pilot@jentronics.com
             </dynamic>
         </view>
         <menubar>
-            <default>
+        <default>
         <menu n="100">
                 <label>GCI</label>
                 <enabled type="bool">true</enabled>
@@ -110,7 +110,18 @@ Ronald Jensen,  pilot@jentronics.com
                     </binding>
                 </item>
         </menu>
-            </default>
+        <menu n="101">
+            <label>Damage</label>
+            <enabled type="bool"></enabled>
+            <item>
+                <label>Combat Log</label>
+                <binding>
+                    <command>dialog-show</command>
+                    <dialog-name>flightlog</dialog-name>
+                </binding>
+            </item>
+        </menu>
+        </default>
 
         </menubar>
         <multiplay>
@@ -149,15 +160,48 @@ Ronald Jensen,  pilot@jentronics.com
         
     </sim>
     
+    <payload>
+        <d-config>
+            <full_damage_dist_m type="double">3</full_damage_dist_m>
+            <use_hitpoints_instead_of_failure_modes_bool type="bool">false</use_hitpoints_instead_of_failure_modes_bool>
+            <hp_max type="double">80</hp_max>
+            <hitable_by_air_munitions type="bool">true</hitable_by_air_munitions>
+            <hitable_by_cannon type="bool">true</hitable_by_cannon>
+            <is_fleet type="bool">false</is_fleet>
+            <rwr_to_screen type="bool">false</rwr_to_screen>
+            <rwr_audio_extended type="bool">false</rwr_audio_extended>
+            <tacview_supported type="bool">false</tacview_supported>
+            <m28_auto type="bool">false</m28_auto>
+            <mlw_max type="double">2.25</mlw_max>
+            <auto_flare_caller type="bool">true</auto_flare_caller>
+        </d-config>
+        <armament>
+            <models type="string">Aircraft/QF-4E/Models/damage/</models>
+            <msg type="bool">false</msg>
+            <enable-craters type="bool">true</enable-craters>
+            <MLW-bearing type="double">0</MLW-bearing>
+            <MLW-count type="int">0</MLW-count>
+            <MLW-launcher type="string"></MLW-launcher>
+            <MAW-bearing type="double">0</MAW-bearing>
+            <MAW-active type="bool">false</MAW-active>
+            <spike type="bool">false</spike>
+        </armament>
+    </payload>
+
     <engines>
         <engine n="0"> <running>true</running> </engine>
         <engine n="1"> <running>true</running> </engine>
     </engines>
     <nasal>
         <drone>         <file>Aircraft/QF-4E/Nasal/drone.nas</file>             </drone>
-        <damage>        <file>Aircraft/QF-4E/Nasal/damage.nas</file>            </damage>
+        <notifications>
+            <file>Aircraft/QF-4E/Nasal/ArmamentNotification.nas</file>
+            <file>Aircraft/QF-4E/Nasal/GeoBridgedTransmitter.nas</file>
+        </notifications>
+        <vector>        <file>Aircraft/QF-4E/Nasal/vector.nas</file>            </vector>
         <gci>           <file>Aircraft/QF-4E/Nasal/gci-listener.nas</file>      </gci>
-        <iff>           <file>Aircraft/QF-4E/Nasal/iff.nas</file>      </iff>
+        <damage>        <file>Aircraft/QF-4E/Nasal/damage.nas</file>            </damage>
+        <iff>           <file>Aircraft/QF-4E/Nasal/iff.nas</file>               </iff>
     </nasal>
     
     <input>
