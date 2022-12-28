@@ -14,7 +14,7 @@ setprop("/controls/drone/mode","free-flight");
 setprop("/controls/drone/stall_safety","armed");
 setprop("/controls/drone/agl_safety","armed");
 setprop("/controls/drone/damaged","false");
-setprop("/controls/drone/damage-enabled",0);
+setprop("/payload/armament/msg",0);
 setprop("/controls/drone/pattern",0);
 setprop("/controls/drone/pattern-dir","-1");
 setprop("/controls/drone/pattern-tightness",2); #1 = slow, 2 = normal, 3 = quick, 4 = supaquick!
@@ -176,10 +176,10 @@ var incoming_listener = func {
                     #### TACTICAL
                     
                     } elsif (last_vector[2] == "damage" and last_vector[3] == "off" ) {
-                        setprop("/controls/drone/damage-enabled",0);
+                        setprop("/payload/armament/msg",0);
                         setprop("/sim/multiplay/chat", "Drone damage disabled");
                     } elsif (last_vector[2] == "damage" and last_vector[3] == "on" ) {
-                        setprop("/controls/drone/damage-enabled",1);
+                        setprop("/payload/armament/msg",1);
                         setprop("/sim/multiplay/chat", "Drone damage enabled");
                     } elsif (last_vector[2] == "evade"){
                         setprop("/sim/multiplay/chat", "Drone performing evasive maneouvers.");
